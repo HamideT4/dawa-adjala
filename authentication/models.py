@@ -14,3 +14,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.adress
+
+class Patient(Profile):
+    antecedent = models.EmailField(unique=True)
+    medical_record = models.CharField(max_length=150)
+    allergies = models.CharField(max_length=150)
+    emergency_contact = models.CharField(max_length=150)
+    emergency_number = models.CharField(max_length=150)
+
+class Doctor(Profile):
+    uid = models.CharField(max_length=150)
+    specialty = models.EmailField(unique=True)
+    hospital_id = models.CharField(max_length=150)
