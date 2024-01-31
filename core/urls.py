@@ -8,5 +8,5 @@ load_dotenv()
 
 urlpatterns = [
     path(str (os.getenv ('ADMIN_URL')), admin.site.urls),
-    path('', include('authentication.urls')), # Authentication app URL
+    path('auth/', include('authentication.urls')), # Authentication app URL
 ]
