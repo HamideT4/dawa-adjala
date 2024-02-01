@@ -8,7 +8,7 @@ class Account(models.Model):
     min_balance = models.IntegerField()
 
     def __str__(self):
-        return self.patient.user.firt_name    
+        return 'Account #' + str(self.id)   
 
 class Transaction(models.Model):
     source_account = models.ForeignKey(Account, related_name='source_account', on_delete=models.CASCADE)
@@ -38,3 +38,6 @@ class Notification(models.Model):
     date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=50)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return 'Notification #' + str(self.id)
