@@ -16,7 +16,7 @@ class Profile(models.Model):
         return self.adress
 
 class Patient(Profile):
-    antecedent = models.EmailField(unique=True)
+    antecedent = models.CharField(max_length=150)
     medical_record = models.CharField(max_length=150)
     allergies = models.CharField(max_length=150)
     emergency_contact = models.CharField(max_length=150)
