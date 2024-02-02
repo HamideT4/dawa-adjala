@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'authentication', # Authentication app
-    'accounts'
+    'accounts',
+    'hospital',
 ]
 
 MIDDLEWARE = [
