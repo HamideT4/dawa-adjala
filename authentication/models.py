@@ -24,5 +24,5 @@ class Patient(Profile):
 
 class Doctor(Profile):
     uid = models.CharField(max_length=150)
-    specialty = models.EmailField(unique=True)
+    specialty = models.CharField(max_length=150)
     hospital_id = models.CharField(max_length=150)
