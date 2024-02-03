@@ -45,6 +45,13 @@ class Patient(models.Model):
     emergency_number = models.CharField(max_length=150)
 
 class Doctor(models.Model):
+
+#     )
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     adress = models.CharField(max_length=255)
+#     gender = models.CharField(choices=GENDER, max_length=1)
+#     birth_date = models.DateField()
+#     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default=None)
     uid = models.CharField(max_length=150)
     specialty = models.CharField(unique=True)
@@ -56,13 +63,6 @@ class Doctor(models.Model):
 #     GENDER = (
 #         ('F', 'Female'),
 #         ('M', 'Male'),
-#     )
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     adress = models.CharField(max_length=255)
-#     gender = models.CharField(choices=GENDER, max_length=1)
-#     birth_date = models.DateField()
-#     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
-
 #     def __str__(self):
 #         return self.adress
 

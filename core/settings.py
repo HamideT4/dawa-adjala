@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'authentication', # Authentication app
+    'accounts',
+    'hospital',
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
