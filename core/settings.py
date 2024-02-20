@@ -38,9 +38,13 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+LOGIN_REDIRECT_URL = '/'
+
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin', #customize admin panel
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,7 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites', # # Django sites -  Required by django-allauth, it depends on it
 
-    # Djago-Allauth
+    #django-compressor
+    'compressor',
+
+     #Djago-Allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -57,9 +64,11 @@ INSTALLED_APPS = [
     'authentication', # Authentication app
     'accounts',
     'hospital',
-]
 
-AUTH_USER_MODEL = 'authentication.User'
+    #'notifications', # Django-notifications
+
+    'widget_tweaks',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,10 +83,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 
+AUTH_USER_MODEL = 'authentication.User'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,13 +161,33 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static/')]
 
 # Uploded files
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+
 MEDIA_URL = '/media/'
+
+# compressor configuration
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+
+COMPRESS_ENABLED = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+ACCOUNT_USERNAME_REQUIRED = False
+
+ACCOUNT_EMAIL_REQUIRED = True  
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email' 
