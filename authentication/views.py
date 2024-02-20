@@ -71,3 +71,9 @@ def patient_dashboard(request):
 
     return render(request, 'dashboards/patients/index.html', {'patient': patient})
 
+@login_required
+def medical_docs(request):
+
+    doctor = request.user
+
+    return render(request, 'dashboards/doctor/medical_docs.html', {'doctor': doctor})

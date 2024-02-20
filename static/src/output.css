@@ -1707,6 +1707,10 @@ h6 {
   width: 100%;
 }
 
+.w-9 {
+  width: 2.25rem;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
@@ -3184,6 +3188,11 @@ h6 {
   background-color: rgb(31 41 55 / 0.5);
 }
 
+:is(.dark .dark\:bg-gray-900) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+
 :is(.dark .dark\:bg-gray-900\/80) {
   background-color: rgb(17 24 39 / 0.8);
 }
@@ -3198,9 +3207,29 @@ h6 {
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
 }
 
-:is(.dark .dark\:bg-gray-900) {
+:is(.dark .dark\:bg-neutral-600) {
   --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+  background-color: rgb(82 82 82 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-neutral-700) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(64 64 64 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-neutral-500) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(115 115 115 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-neutral-50) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 250 250 / var(--tw-bg-opacity));
+}
+
+:is(.dark .dark\:bg-neutral-800) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity));
 }
 
 :is(.dark .dark\:bg-gradient-to-r) {
