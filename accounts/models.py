@@ -1,5 +1,5 @@
 from django.db import models
-from authentication.models import Patient, Profile
+from authentication.models import Patient, User
 
 class Account(models.Model):
     account_unique_identifier = models.CharField(max_length=255, unique=True)
@@ -26,7 +26,7 @@ class Operation(models.Model):
     sender_phone = models.CharField(max_length=8)
     receiver_phone = models.CharField(max_length=8)
     description = models.TextField()
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(User, on_delete=models.CASCADE)
     account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='operations')
 
     def __str__(self):
