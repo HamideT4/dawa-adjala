@@ -1,79 +1,41 @@
-from django.shortcuts import redirect, render
-from django.contrib.auth import get_user_model, login, authenticate
-from django.views.generic import CreateView, FormView
-from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import DoctorSignUpForm, PatientSignupForm
+from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from .forms import CustomUserCreationForm
 from .models import User
+from django.contrib.auth.views import LoginView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 
 User = get_user_model()
 
-def register(request):
-    return render (request, 'registration/signup.html')
-
-class DoctorSignupView(CreateView):
-    model = User
-    form_class = DoctorSignUpForm
-    template_name = 'registration/doctor_signup.html'
-
-    def form_valid(self, form):
-        user = form.save()
-        user.backend = 'django.contrib.auth.backends.ModelBackend'
-        login(self.request, user)
-        return redirect('/')
-
-class PatientSignupView(CreateView):
-    model = User
-    form_class = PatientSignupForm
-    template_name = 'registration/patient_signup.html'
-
-    def form_valid(self, form):
-        user = form.save()
-        user.backend = 'django.contrib.auth.backends.ModelBackend'
-        #user.save()
-        form.save_m2m()
-        login(self.request, user)
-        return redirect('/')
-    
-def login_request(request):
+def signup(request):
     if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(email=email, password=password)
-            if user is not None :
-                login(request,user)
-                if user.is_doctor:
-                    return redirect('authentication:doctor_dashboard')
-                else:
-                    return redirect('authentication:patient_dashboard')
-            else:
-                messages.error(request,"Email ou mot de passe incorrect")
-        else:
-            messages.error(request,"Email ou mot de passe incorrect")
+            user = form.save(commit=False)
+            user.is_active = True
+            user.save()
     else:
-        form = AuthenticationForm()
-    return render(request, 'registration/login.html', {'form':form})
+        form = CustomUserCreationForm()
+    return render (request, 'registration/signup.html', {'form': form})
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'
+    redirect_authenticated_user = True
+    def get_success_url(self):
+        return 'authentication:user_dashboard'
+    
+class UserView(DetailView):
+    model = User
+    template_name = 'registration/profile.html'
 
 @login_required
-def doctor_dashboard(request):
+def user_dashbord(request):
+    user = request.user
 
-    doctor = request.user
+    context = {
+        'user':user,
+    }
 
-    return render(request, 'dashboards/doctors/index.html', {'doctor': doctor})
-
-@login_required
-def patient_dashboard(request):
-
-    patient = request.user
-
-    return render(request, 'dashboards/patients/index.html', {'patient': patient})
-
-@login_required
-def medical_docs(request):
-
-    doctor = request.user
-
-    return render(request, 'dashboards/doctor/medical_docs.html', {'doctor': doctor})
+    return render(request, 'dashbord/index.html', context)
+   

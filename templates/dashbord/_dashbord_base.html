@@ -1,0 +1,35 @@
+{% load static %}
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% include "includes/head.html" %}
+    <link rel="stylesheet" href="{% static 'css/dashbord-style.css' %}">
+    {% block extrastyle %}{% endblock extrastyle %}
+</head>
+
+<body class="m-0 font-sans text-base antialiased font-normal dark:bg-zinc-800 leading-default bg-gray-50 text-black">
+  {% block overlay %}
+    <div class="absolute w-full bg-green-700 dark:hidden min-h-72"></div>
+  {% endblock overlay %}
+  {% block sidebar %}
+      {% include 'includes/sidebar.html' %}
+  {% endblock sidebar %}
+
+  <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
+    {% block navigation %}
+        {% include 'includes/navigation.html' %}
+    {% endblock navigation %}
+    {% block breadcrumbs %}{% endblock breadcrumbs %}
+    
+        {% block content %}
+            <!-- contenu -->
+        {% endblock content %}
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

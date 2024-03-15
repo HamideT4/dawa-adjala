@@ -61,13 +61,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    # Local apps
+
     'authentication', # Authentication app
     'accounts',
     'hospital',
+    'dawaadjala',
 
-    #'notifications', # Django-notifications
-
-    'widget_tweaks',
+    #'widget_tweaks',
 ]
 
 MIDDLEWARE = [

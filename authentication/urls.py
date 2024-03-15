@@ -2,18 +2,18 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 from . import views
+from .views import UserView, CustomLoginView
 
 app_name = 'authentication'
 
 urlpatterns = [
-    path('signup/', views.register, name='signup'),
-    path('signup/doctor/', views.DoctorSignupView.as_view(), name='doctor_signup'),
-    path('signup/patient/', views.PatientSignupView.as_view(), name='patient_signup'),
-    path('login/',views.login_request, name='login'),
+    path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
-    path('doctor-dashboard/', views.doctor_dashboard, name='doctor_dashboard'),
-    path('patient-dashboard/', views.patient_dashboard, name='patient_dashboard'),
+    path('profile/<int:pk>/', login_required(UserView.as_view()), name='profile'),
+    path('signup/', views.signup, name='signup'),
+    path('user-dashboard/', views.user_dashbord, name='user_dashboad'),
 ]
 
 if settings.DEBUG:

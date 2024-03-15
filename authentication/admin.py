@@ -1,14 +1,15 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .forms import CustomUserCreationForm
-from .models import Doctor, Patient, User, Consultation
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import User
 
 class UserAdmin(BaseUserAdmin):
     ordering = ['first_name']
     add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
     model = User
-    list_display = ['first_name', 'last_name', 'email', 'address', 'gender', 'avatar', 'phone_number', 'is_doctor', 'is_patient', 'is_staff', 'is_active']
+    list_display = ['first_name', 'last_name', 'email', 'address', 'gender', 'avatar', 'phone_number', 'is_staff', 'is_active']
     list_display_links = ['first_name', 'last_name']
     list_filter = ['first_name', 'is_active']
     search_fields = ['first_name']
@@ -28,7 +29,7 @@ class UserAdmin(BaseUserAdmin):
         (
             _('Permissions and Groups'),
             {
-                'fields': ('is_doctor', 'is_patient', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions',)
+                'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions',)
             },
         ),
         (
@@ -46,6 +47,3 @@ class UserAdmin(BaseUserAdmin):
     )
 
 admin.site.register(User, UserAdmin)
-admin.site.register(Doctor)
-admin.site.register(Patient)
-admin.site.register(Consultation)

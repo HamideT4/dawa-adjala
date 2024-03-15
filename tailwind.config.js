@@ -1381,7 +1381,9 @@ module.exports = {
       });
     }),
 
-    require('flowbite/plugin'),
+    require('flowbite/plugin')({
+      charts: true,
+    }),
   ],
 }
 

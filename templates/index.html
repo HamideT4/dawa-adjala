@@ -4,92 +4,30 @@
 
 {% block content %}
 
-{% comment %} <div
-class="relative bg-white pb-[110px] pt-[120px] dark:bg-zinc-800 lg:pt-[150px]"
->
+<div class="relative bg-white pb-[0px] pt-[110px] dark:bg-zinc-800 lg:pt-[150px]">
 <div class="container mx-auto">
+
   <div class="-mx-4 flex flex-wrap items-center">
     <div class="w-full px-4 lg:w-5/12">
       <div class="hero-content">
-        <h1
-          class="mb-5 text-4xl font-bold !leading-[1.208] text-dark dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl"
-        >
-          Dawa Adjala
+        <h1 class="mb-5 font-awesome !leading-[1.208] text-dark dark:text-white sm:text-[22px] lg:text-[20px] xl:text-4xl">
+        Dawa Adjala , votre bien-être assuré et à portée de main
         </h1>
-        <p
-          class="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6"
-        >
-          dfghjkffffffffvggggggggggggggggfffff
+        <p class="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6">
+        L'absence de système d'assurance santé au Tchad crée des difficultés financières pour les ménages à faible revenu, retardant ainsi l'accès aux soins médicaux et aggravant les problèmes de santé 
         </p>
         <ul class="flex flex-wrap items-center">
           <li>
-            <a
-              href="javascript:void(0)"
-              class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7"
-            >
-              Get Started
+            <a href="{% url 'authentication:signup' %}">
+              <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-green-700 rounded-full border border-green-700 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Créer un compte</button>
             </a>
           </li>
           <li>
-            <a
-              href="javascript:void(0)"
-              class="inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-[#464646] hover:text-primary dark:text-white"
-            >
-              <span class="mr-2">
-                <svg
-                  width="24"
-                  height="25"
-                  viewBox="0 0 24 25"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="12" cy="12.6152" r="12" fill="#166534" />
-                  <rect
-                    x="7.99893"
-                    y="14.979"
-                    width="8.18182"
-                    height="1.63636"
-                    fill="white"
-                  />
-                  <rect
-                    x="11.2717"
-                    y="7.61523"
-                    width="1.63636"
-                    height="4.09091"
-                    fill="white"
-                  />
-                  <path
-                    d="M12.0898 14.1606L14.9241 11.0925H9.25557L12.0898 14.1606Z"
-                    fill="white"
-                  />
-                </svg>
-              </span>
-              dddddddddddddd
-            </a>
+            <a href="{% url 'hospital:hospital_register' %}">
+              <button type="button" class="text-green-700 hover:text-white border border-green-700 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-700 dark:text-green-700 dark:hover:text-white dark:hover:bg-green-700 dark:focus:ring-green-700">Inscrire son hôpital</button>
+            </a> 
           </li>
         </ul>
-        <div class="clients pt-16">
-          <h6
-            class="mb-6 flex items-center text-xs font-normal text-body-color dark:text-dark-6"
-          >
-            sdfghjkkkkkkkkkkkkkkkkkkk
-            <span class="ml-3 inline-block h-px w-8 bg-body-color"></span>
-          </h6>
-          <div class="flex items-center gap-4 xl:gap-[50px]">
-            <a href="javascript:void(0)" class="block py-3">
-              <img src="assets/images/brands/oracle.svg" alt="oracle" />
-            </a>
-            <a href="javascript:void(0)" class="block py-3">
-              <img src="assets/images/brands/intel.svg" alt="intel" />
-            </a>
-            <a href="javascript:void(0)" class="block py-3">
-              <img
-                src="assets/images/brands/logitech.svg"
-                alt="logitech"
-              />
-            </a>
-          </div>
-        </div>
       </div>
     </div>
     <div class="hidden px-4 lg:block lg:w-1/12"></div>
@@ -97,7 +35,7 @@ class="relative bg-white pb-[110px] pt-[120px] dark:bg-zinc-800 lg:pt-[150px]"
       <div class="lg:ml-auto lg:text-right">
         <div class="relative z-10 inline-block pt-11 lg:pt-0">
           <img
-            src="assets/images/hero/hero-image-01.png"
+            src="{% static 'media/home/home.jpg' %}"
             alt="hero"
             class="max-w-full lg:ml-auto"
           />
@@ -141,8 +79,50 @@ class="relative bg-white pb-[110px] pt-[120px] dark:bg-zinc-800 lg:pt-[150px]"
     </div>
   </div>
 </div>
-</div> {% endcomment %}
-<!-- ====== Hero Section End -->
+</div> 
+
+<!-- ====== Services Section Start -->
+<section class="pb-12 pt-0 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+  <div class="container mx-auto">
+    <div class="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
+      {% comment %} <span class="mb-2 block text-lg font-semibold text-primary">
+        Nos Services
+      </span> {% endcomment %}
+      <h2 class="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px]">
+        Nos services
+      </h2>
+      <p class="text-base text-body-color dark:text-dark-6">
+        Donnez la possibilité d’accès aux soins médicaux de qualité et à temps à la population vulnérable
+      </p>
+    </div>
+
+    <div class="flex justify-center gap-4">
+      <div class="w-full lg:w-1/3 px-4"> 
+        <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+          <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        </a>
+      </div>
+      
+      <div class="w-full lg:w-1/3 px-4"> 
+        <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+          <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        </a>
+      </div>
+      
+      <div class="w-full lg:w-1/3 px-4"> 
+        <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+          <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Services Section End -->
+
 {% comment %} <a href="{% url 'authentication:doctor_signup' %}">
     <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-green-700 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Espace medecin</button>
 </a>

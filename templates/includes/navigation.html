@@ -1,6 +1,6 @@
 {% load static %}
 
-<nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-end" navbar-main navbar-scroll="false">
+<nav class="flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-end fixed top-0 left-0 right-0 z-990 m-0" navbar-main navbar-scroll="false">
   <div class="mr-4 lg:mt-3 sm:mt-0">
     <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:text-white dark:text-gray-400" type="button">
         <svg class="w-5 h-5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
@@ -96,33 +96,30 @@
       </a>
     </div>    
  </div>
-
+ {% if request.user.is_authenticated%}
     <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" type="button">
       <span class="sr-only mt-4">Open user menu</span>
-      <img class="w-10 h-10 rounded-full" src="{% static 'images/profile.jpg'%}" alt="user photo">
+      {% if request.user.avatar %}
+      <img class="w-10 h-10 rounded-full" src="{{ request.user.avatar.url }}" alt="user photo">
+      {% else %}
+      <img class="w-10 h-10 rounded-full" src="{% static 'media/avatar/default.jpg' %}" alt="user photo">
+      {% endif %}
     </button>
 
     <!-- Dropdown menu -->
-    <div id="dropdownAvatar" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ml-4 mt-1">
+    <div id="dropdownAvatar" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-54 dark:bg-gray-700 dark:divide-gray-600 ml-4 mt-1">
       <div class="px-4 py-3 text-sm font-extrabold text-gray-900 dark:text-white">
-        <div>Bonnie Green</div>
+        <div>{{ request.user.get_full_name }}</div>
       </div>
-      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
-        <li class="mt-0.5 w-full">
-            <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="./pages/profile.html">
-              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-                <svg class="flex-shrink-0 w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.1 12.6v-1.8A5.4 5.4 0 0 0 13 5.6V3a1 1 0 0 0-2 0v2.4a5.4 5.4 0 0 0-4 5.5v1.8c0 2.4-1.9 3-1.9 4.2 0 .6 0 1.2.5 1.2h13c.5 0 .5-.6.5-1.2 0-1.2-1.9-1.8-1.9-4.2ZM8.8 19a3.5 3.5 0 0 0 6.4 0H8.8Z"/>
-                </svg>         
-              </div>
-              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Notifications</span>
-            </a>
-          </li>
-      </ul>
       <div class="py-2">
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Se déconnecter</a>
+        <a href="{% url 'authentication:profile' request.user.pk %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Paramètres</a>
+      </div>
+      <div class="py-2">
+        <a href="{% url 'authentication:logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Se déconnecter</a>
       </div>
     </div>
+  {% endif %}
   {% comment %} </div>
 </div> {% endcomment %}
 </nav>
