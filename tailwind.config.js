@@ -652,7 +652,7 @@ module.exports = {
       DEFAULT: "1",
     },
     fontFamily: {
-      sans: ["Open Sans"],
+      sans: ["Poppins"],
       serif: ['SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace', "serif"],
       body: ["Roboto", "sans-serif"],
       awesome: ["FontAwesome"],
