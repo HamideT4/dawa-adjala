@@ -1,0 +1,71 @@
+{% load static %}
+
+<section class="pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
+    <div class="container mx-auto">
+      <div class="-mx-4 flex flex-wrap">
+        <div class="w-full px-4">
+          <div class="mx-auto mb-[60px] max-w-[510px] text-center">
+            <h2
+              class="mb-3 text-3xl font-bold leading-[1.2] text-green-800 dark:text-white sm:text-4xl md:text-[40px]"
+            >
+              Notre équipe
+            </h2>
+            <p class="text-base text-body-color dark:text-dark-6">
+              There are many variations of passages of Lorem Ipsum available
+              but the majority have suffered alteration in some form.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="-mx-4 flex flex-wrap justify-center">
+        {% for team in team %}
+        <div class="w-full px-4 md:w-1/2 xl:w-1/4">
+          <div class="mx-auto mb-10 w-full max-w-[370px]">
+            <div class="relative overflow-hidden rounded-lg">
+              <img
+                src="{{ team.photo.url }}"
+                alt="image"
+                class="w-full"
+              />
+              <div class="absolute bottom-5 left-0 w-full text-center">
+                <div
+                  class="relative mx-5 overflow-hidden rounded-lg bg-white px-3 py-5 dark:bg-dark-2"
+                >
+                  <h3
+                    class="text-base font-semibold text-green-800 dark:text-white"
+                  >
+                    {{team.get_full_name}}
+                  </h3>
+                  <p class="text-xs text-body-color dark:text-dark-6">
+                    {{team.role}}
+                  </p>
+                  <div>
+                    <span class="absolute bottom-0 left-0">
+                      <svg
+                        width="61"
+                        height="30"
+                        viewBox="0 0 61 30"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="16"
+                          cy="45"
+                          r="45"
+                          fill="#166534"
+                          fill-opacity="0.11"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>

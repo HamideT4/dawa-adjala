@@ -59,7 +59,7 @@ INSTALLED_APPS = [
      #Djago-Allauth
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    # 'allauth.socialaccount',
 
     # Local apps
 
