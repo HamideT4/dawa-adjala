@@ -192,3 +192,9 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True  
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email' 
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+SITE_NAME = "DawaAdjala"
