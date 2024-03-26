@@ -17,9 +17,11 @@ def hospital_register(request):
 def hospital_detail(request):
 
     hospital = Hospital.objects.all()
+    approved_hospitals = Hospital.objects.filter(is_approuved=True)
 
     context = {
         'hospital': hospital,
+        'approved_hospitals': approved_hospitals,
     }
 
     return render(request, 'hospital/detail.html', context )

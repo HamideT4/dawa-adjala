@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from .forms import CustomUserCreationForm
 from .models import User
+from django.urls import reverse
 from django.contrib.auth.views import LoginView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
@@ -15,6 +16,8 @@ def signup(request):
             user = form.save(commit=False)
             user.is_active = True
             user.save()
+            login_url = reverse('authentication:login')
+            return redirect(login_url)
     else:
         form = CustomUserCreationForm()
     return render (request, 'registration/signup.html', {'form': form})
@@ -23,7 +26,7 @@ class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
     redirect_authenticated_user = True
     def get_success_url(self):
-        return 'authentication:user_dashboad'
+        return reverse('authentication:user_dashboad')
     
 class UserView(DetailView):
     model = User

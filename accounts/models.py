@@ -1,9 +1,23 @@
 from django.db import models
 from authentication.models import User
-from hospital.models import generate_uid
+import uuid
+import base64
+
+
+def generate_account_uid():
+    """
+    Génère un code uid unique pour chaque compte.
+    Returns:
+        Le code uid pour le compte.
+    """
+    uid = uuid.uuid4()
+    uid_bytes = uid.bytes
+    uid_base64 = base64.b64encode(uid_bytes).decode('utf-8')
+    uid_base64 = uid_base64.replace('/', '').replace('+', '')
+    return 'DAD' + uid_base64[:8].upper()
 
 class Account(models.Model):
-    account_unique_identifier = models.CharField(max_length=255, unique=True, default=generate_uid)
+    account_unique_identifier = models.CharField(max_length=255, unique=True, default=generate_account_uid, editable=False)
     owner = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default=None)
     balance = models.IntegerField(default=0)
 

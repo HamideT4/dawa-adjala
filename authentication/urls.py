@@ -9,9 +9,6 @@ from .views import UserView, CustomLoginView
 app_name = 'authentication'
 
 urlpatterns = [
-<<<<<<<<< Temporary merge branch 1
-    path('', include('allauth.urls')),
-=========
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('profile/<int:pk>/', login_required(UserView.as_view()), name='profile'),
