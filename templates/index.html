@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="relative bg-white pb-[0px] pt-[110px] dark:bg-zinc-800 lg:pt-[150px]">
+<div class="relative bg-white/60 pb-[110px] pt-[120px] dark:bg-zinc-800 lg:pt-[150px] mt-12">
 <div class="container mx-auto">
 
   <div class="-mx-4 flex flex-wrap items-center">
@@ -85,10 +85,10 @@
 </div> 
 
 <!-- ====== Services Section Start -->
-<section class="pb-12 pt-0 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+<section class="pb-12 pt-0 bg-green-50 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
   <div class="container mx-auto">
     <div class="mx-auto mb-12 max-w-[510px] text-center lg:mb-20">
-      <h2 class="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px]">
+      <h2 class="mb-3 text-3xl font-bold leading-[1.2] text-green-700 dark:text-white sm:text-4xl md:text-[40px]">
         Nos services
       </h2>
       <p class="text-base text-body-color dark:text-dark-6">
@@ -99,13 +99,13 @@
       <div class="grid grid-cols-3 md:grid-cols-3 gap-4">
         {% for service in service %}
         <div>
-            <img class="h-auto md:h-64 max-w-full rounded-lg" src="{{service.image.url}}" alt="">
+            <img class="h-auto md:h-64 w-full rounded-lg" src="{{service.image.url}}" alt="Services Dawa Adjala">
             <h5 class="mt-3 text-center"> {{service.name}}</h5>
         </div>
         {% endfor %}   
     </div>
 
-    <div class="bg-white py-0 sm:py-0">
+    {% comment %} <div class="py-0 sm:py-0">
       <div class="mx-auto max-w-7xl px-2 lg:px-8">
         <div class="mx-auto mt-16 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
           <div class="p-8 sm:p-10 lg:flex-auto">
@@ -157,45 +157,40 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
     
   </div>
 </section>
 
+{% include "includes/faq.html" %}
+
 <section
-      class="relative z-10 overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px]"
+      class="relative z-10 overflow-hidden bg-green-50 py-20 dark:bg-dark lg:py-[120px]"
     >
       <div class="container mx-auto">
         <div class="-mx-4 flex flex-wrap lg:justify-between">
           <div class="w-full px-4 lg:w-1/2 xl:w-6/12">
             <div class="mb-12 max-w-[570px] lg:mb-0">
-              <span class="mb-4 block text-base font-semibold text-primary">
-                Contact Us
+              <span class="mb-4 block text-base font-semibold text-green-700">
+                Contactez-nous
               </span>
-              <h2
-                class="mb-6 text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px]"
-              >
-                GET IN TOUCH WITH US
+              <h2 class="mb-6 text-[32px] font-bold uppercase text-black dark:text-white sm:text-[20px] lg:text-[26px] xl:text-[20px]">
+              ENTREZ ZN CONTACT AVEC NOTRE EQUIPE
               </h2>
-              <p
-                class="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6"
-              >
+              <p class="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eius tempor incididunt ut labore et dolore magna aliqua. Ut enim
                 adiqua minim veniam quis nostrud exercitation ullamco
               </p>
 
               <div class="mb-8 flex w-full max-w-[370px]">
-                <div
-                  class="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]"
-                >
+                <div class="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-green-700/5 text-green-700 sm:h-[70px] sm:max-w-[70px]">
                   <svg
                     width="32"
                     height="32"
                     viewBox="0 0 32 32"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+                    xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M30.6 11.8002L17.7 3.5002C16.65 2.8502 15.3 2.8502 14.3 3.5002L1.39998 11.8002C0.899983 12.1502 0.749983 12.8502 1.04998 13.3502C1.39998 13.8502 2.09998 14.0002 2.59998 13.7002L3.44998 13.1502V25.8002C3.44998 27.5502 4.84998 28.9502 6.59998 28.9502H25.4C27.15 28.9502 28.55 27.5502 28.55 25.8002V13.1502L29.4 13.7002C29.6 13.8002 29.8 13.9002 30 13.9002C30.35 13.9002 30.75 13.7002 30.95 13.4002C31.3 12.8502 31.15 12.1502 30.6 11.8002ZM13.35 26.7502V18.5002C13.35 18.0002 13.75 17.6002 14.25 17.6002H17.75C18.25 17.6002 18.65 18.0002 18.65 18.5002V26.7502H13.35ZM26.3 25.8002C26.3 26.3002 25.9 26.7002 25.4 26.7002H20.9V18.5002C20.9 16.8002 19.5 15.4002 17.8 15.4002H14.3C12.6 15.4002 11.2 16.8002 11.2 18.5002V26.7502H6.69998C6.19998 26.7502 5.79998 26.3502 5.79998 25.8502V11.7002L15.5 5.4002C15.8 5.2002 16.2 5.2002 16.5 5.4002L26.3 11.7002V25.8002Z"
                       fill="currentColor"
@@ -203,19 +198,17 @@
                   </svg>
                 </div>
                 <div class="w-full">
-                  <h4 class="mb-1 text-xl font-bold text-dark dark:text-white">
-                    Our Location
+                  <h4 class="mb-1 text-xl font-bold text-black dark:text-white">
+                    Notre localisation
                   </h4>
                   <p class="text-base text-body-color dark:text-dark-6">
-                    99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                    99 S.t Jomblo Park Pekanbaru
                   </p>
                 </div>
               </div>
 
               <div class="mb-8 flex w-full max-w-[370px]">
-                <div
-                  class="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]"
-                >
+                <div class="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-green-700/5 text-green-700 sm:h-[70px] sm:max-w-[70px]">
                   <svg
                     width="32"
                     height="32"
@@ -245,19 +238,17 @@
                   </svg>
                 </div>
                 <div class="w-full">
-                  <h4 class="mb-1 text-xl font-bold text-cyan-600 dark:text-white">
-                    Phone Number
+                  <h4 class="mb-1 text-xl font-bold text-black dark:text-white">
+                    Numéro de téléphone
                   </h4>
                   <p class="text-base text-body-color dark:text-dark-6">
-                    (+62)81 414 257 9980
+                    (+235)81 414 257 9980
                   </p>
                 </div>
               </div>
 
               <div class="mb-8 flex w-full max-w-[370px]">
-                <div
-                  class="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]"
-                >
+                <div class="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-green-700/5 text-green-700 sm:h-[70px] sm:max-w-[70px]">
                   <svg
                     width="32"
                     height="32"
@@ -272,8 +263,8 @@
                   </svg>
                 </div>
                 <div class="w-full">
-                  <h4 class="mb-1 text-xl font-bold text-dark dark:text-white">
-                    Email Address
+                  <h4 class="mb-1 text-xl font-bold text-black dark:text-white">
+                    Adresse e-mail
                   </h4>
                   <p class="text-base text-body-color dark:text-dark-6">
                     info@yourdomain.com
@@ -283,9 +274,7 @@
             </div>
           </div>
           <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
-            <div
-              class="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12"
-            >
+            <div class="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12">
               <form>
                 <div class="mb-6">
                   <input
