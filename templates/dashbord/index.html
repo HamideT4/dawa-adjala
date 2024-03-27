@@ -16,14 +16,14 @@
             <div class="relative overflow-hidden rounded-2xl" >
               <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-white dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 opacity-80"></span>
               <div class="relative z-10 flex-auto p-4">
-                <div class="w-16 h-16 text-center bg-center shadow-sm icon bg-gradient-to-tl from-blue-500 to-violet-500 rounded-xl">
+                <div class="w-16 h-16 text-center bg-center shadow-sm icon bg-gradient-to-tl from-green-700/10 to-green-800/10  rounded-xl">
                   <i class="relative text-xl leading-none text-white opacity-100 fa fa-user-nurse top-31/100"></i>
                 </div>
                 <h5 class="pb-2 mt-6 mb-4 font-awesome text-black">{{ user.get_full_name }}</h5>
                 <div class="flex">
                   <div class="flex">
                     <div class="mr-6">
-                      <p class="mb-0  font-awesome leading-normal text-black opacity-80"> {{ doctor.hospital }} </p>
+                      <p class="mb-0  font-awesome leading-normal text-black opacity-80"> {{ user. }} </p>
                       <h6 class="mb-0 text-black leading-normal opacity-75"> {{doctor.service}} </h6>
                     </div>
                   </div>
@@ -37,28 +37,28 @@
             <div class="w-full max-w-full px-3 md:w-1/2 md:flex-none">
               <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="p-4 mx-6 mb-0 text-center border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                  <div class="w-16 h-16 text-center bg-center shadow-sm icon bg-gradient-to-tl from-blue-500 to-violet-500 rounded-xl">
+                  <div class="w-16 h-16 text-center bg-center shadow-sm icon bg-gradient-to-tl from-green-700/10 to-green-800/10 rounded-xl">
                     <i class="relative text-xl leading-none text-white opacity-100 fa fa-hospital-user top-31/100"></i>
                   </div>
                 </div>
                 <div class="flex-auto p-4 pt-0 text-center">
-                  <h6 class="mb-0 text-center dark:text-white">Consultations</h6>
-                  <span class="text-xs leading-tight dark:text-white dark:opacity-80">Nombre total</span>
+                  <h6 class="mb-0 text-center dark:text-white">Solde actuelle</h6>
+                  <span class="text-xs leading-tight dark:text-white dark:opacity-80">En FCFA</span>
                   <hr class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
-                  <h5 class="mb-0 dark:text-white">{{ consultations_count }}</h5>
+                  <h5 class="mb-0 dark:text-white">{{ user.accounts.balance }}</h5>
                 </div>
               </div>
             </div>
             <div class="w-full max-w-full px-3 mt-6 md:mt-0 md:w-1/2 md:flex-none">
               <div class="relative flex flex-col min-w-0 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="p-4 mx-6 mb-0 text-center border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-                  <div class="w-16 h-16 text-center bg-center shadow-sm icon bg-gradient-to-tl from-blue-500 to-violet-500 rounded-xl">
+                  <div class="w-16 h-16 text-center bg-center shadow-sm icon bg-gradient-to-tl from-green-700/10 to-green-800/10  rounded-xl">
                     <i class="relative text-xl leading-none text-white opacity-100 fa fa-stethoscope top-31/100"></i>
                   </div>
                 </div>
                 <div class="flex-auto p-4 pt-0 text-center">
-                  <h6 class="mb-0 text-center dark:text-white">Consultations</h6>
-                  <span class="text-xs leading-tight dark:text-white dark:opacity-80">Effectuées aujourd'hui</span>
+                  <h6 class="mb-0 text-center dark:text-white">Recharges</h6>
+                  <span class="text-xs leading-tight dark:text-white dark:opacity-80">Effectuées dernièrement</span>
                   <hr class="h-px my-4 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
                   <h5 class="mb-0 dark:text-white">{{ today_consultations_count }}</h5>
                 </div>
@@ -70,13 +70,13 @@
           <div class="relative flex flex-col min-w-0 mt-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
             <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
               <div class="flex items-center justify-between">
-                <h6 class="mb-0 font-awesome dark:text-white">5 dernières recharges</h6>
-                <div class="relative flex items-center justify-between p-1 border rounded-full bg-white ">
+                <h5 class="mb-2 font-awesome dark:text-white">5 dernières recharges</h5>
+                {% comment %} <div class="relative flex items-center justify-between p-1 border rounded-full bg-white ">
                   <input type="text" placeholder="Rechercher un patient" class="w-full pl-10 pr-4 py-2 border-0 focus:outline-none bg-transparent">
                   <div class="absolute inset-y-0 left-0 flex items-center pl-3">
                     <i class="fas fa-search text-green-700"></i>
                   </div>
-                </div>
+                </div> {% endcomment %}
 
               </div>
             </div>
@@ -85,9 +85,9 @@
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-green-50">
                   <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom du patient</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Adresse</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Agences</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Somme réchargée</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
                   </tr>
                 </thead>
                   <tbody>
@@ -102,7 +102,7 @@
                       {% endfor %}
                     {% else %}
                         <tr>
-                            <td colspan="3" class="px-6 py-4 whitespace-nowrap text-center">Aucune consultation disponible</td>
+                            <td colspan="3" class="px-6 py-4 whitespace-nowrap text-center">Aucune recharge n'a été effectué sur ce compte</td>
                         </tr>
                     {% endif %}
                 </tbody>

@@ -8,6 +8,8 @@ from django.conf.urls.static import static
 
 load_dotenv()
 
+admin.site.site_header = 'Dawa Adjala'
+
 urlpatterns = [
     path(str (os.getenv ('ADMIN_URL')), admin.site.urls),
     path('', include('dawaadjala.urls')),
