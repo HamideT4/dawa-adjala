@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import gettext_lazy as _ 
 from .managers import CustomUserManager
 
+
 class User(AbstractBaseUser, PermissionsMixin):
 
     GENDER = (
@@ -17,6 +18,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     address = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=20, null=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    qr_code = models.ImageField(upload_to='qrcodes/', blank=True, null=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     date_joined =  models.DateTimeField(auto_now_add=True)
@@ -33,6 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def get_full_name(self):
         return f"{self.first_name}".capitalize() + " " + f"{self.last_name}".capitalize()
+    
     
 def get_absolute_url(self):
     return "/authentication/%i/" % (self.pk)

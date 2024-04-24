@@ -3,7 +3,14 @@
 {% load static i18n %}
 
 {% block content %}
-<section
+<body
+x-data="{ page: 'about', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+x-init="
+     darkMode = JSON.parse(localStorage.getItem('darkMode'));
+     $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+:class="{'b eh': darkMode === true}"
+>
+<section  
       class="overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]"
     >
       <div class="container mx-auto">
@@ -631,4 +638,5 @@
     </section>
 
     {% include "includes/team.html" %}
+  </body>
 {% endblock content %}

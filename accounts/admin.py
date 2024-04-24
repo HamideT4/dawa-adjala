@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Account, Transaction,Notification
+from .models import Account, Recharge,Notification, Rechargebook
 
 admin.site.register(Account)
-admin.site.register(Transaction)
+admin.site.register(Recharge)
 admin.site.register(Notification)
+admin.site.register(Rechargebook)

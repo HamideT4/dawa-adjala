@@ -3,7 +3,6 @@ from authentication.models import User
 import uuid
 import base64
 
-
 def generate_account_uid():
     """
     Génère un code uid unique pour chaque compte.
@@ -24,14 +23,14 @@ class Account(models.Model):
     def __str__(self):
         return f"Compte #{self.account_unique_identifier}"   
 
-class Transaction(models.Model):
+class Recharge(models.Model):
     source_account = models.ForeignKey(Account, related_name='source_account', on_delete=models.CASCADE)
     amount = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
-        return f"Transaction #{self.id}"
+        return f"Recharge #{self.id}"
 
     # Override the default save method
     def save(self, *args, **kwargs):
@@ -58,3 +57,10 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.alert_type
+
+class Rechargebook(models.Model):
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    pdf_file = models.FileField(upload_to='pdf_livrets/', null=True, blank=True)
+    image_file = models.ImageField(upload_to='image_livrets/', null=True, blank=True)
+    

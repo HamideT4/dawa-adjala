@@ -3,22 +3,39 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dawa Adjala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<head>
-    {% include "includes/head.html" %}
-</head>
+    <link rel="icon" href="favicon.ico">
+  </head>
+  {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  {% endcompress %}
+  
 
-<body class="dark:bg-zinc-800">
-
-    {% include "navbar.html" %}
+    {% block navigation %}
+        {% include "navbar.html" %}
+    {% endblock navigation %}
     
         {% block content %}
+            <!-- contenu -->
         {% endblock content %}
 
+
+
     {% include "includes/footer.html" %}
-    
+    </main>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-    <script src="{% static 'js/main.js' %}"></script>
-</body>
+    <script defer src="{% static 'js/bundle.js' %}"></script>
+    {% comment %} <script src="{% static 'js/main.js' %}"></script> {% endcomment %}
+
 
 </html>

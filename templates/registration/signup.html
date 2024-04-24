@@ -1,31 +1,160 @@
+{% extends "_base.html" %}
 {% load static %}
 {% load static i18n %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    {% include "includes/head.html" %}
-</head>
-<body class="dark:bg-zinc-800">
-
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-48 w-48" src="{% static 'media/logo/logo.png' %}" alt="Dawa Adjala" >
-      <h2 class="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">Connectez-vous à votre compte</h2>
+{% block content %}
+<main>
+<!-- ===== SignIn Form Start ===== -->
+<section class="i pg fh rm ki xn vq gj qp gr hj rp hr">
+  <div
+    class="animate_top bb af i va sg hh sm vk xm yi _n jp hi ao kp"
+  >
+    <!-- Bg Border -->
+    <span class="rc h r s zd/2 od zg gh"></span>
+    <span class="rc h r q zd/2 od xg mh"></span>
+    <div class="rj">
+      <h2 class="ek ck kk wm xb">Connectez-vous à votre compte</h2>
     </div>
-  
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">S'inscrire</button>
-      </form>
+
+    <form class="sb" action="{% url 'authentication:login' %}" method="POST">
+      {% csrf_token %}
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }} text-red-600"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+      <div class="tc sf yo ap zf ep qb">
+        <div class="vd to/2">
+          <label class="rc ac" for="fullname">Full name</label>
+            <input
+              type="text"
+              name="fullname"
+              id="fullname"
+              placeholder="Devid Wonder"
+              class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+            />
+        </div>
+
+        <div class="vd to/2">
+          <label class="rc ac" for="email">Email address</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@gmail.com"
+              class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+            />
+        </div>
+      </div>
+
+      <div class="tc sf yo ap zf ep qb">
+        <div class="vd to/2">
+          <label class="rc ac" for="phone">Phone number</label>
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              placeholder="+009 3342 3432"
+              class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+            />
+        </div>
+
+        <div class="vd to/2">
+          <label class="rc ac" for="subject">Subject</label>
+            <input
+              type="text"
+              for="subject"
+              id="subject"
+              placeholder="Type your subject"
+              class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+            />
+        </div>
     </div>
+
+    <div class="tc sf yo ap zf ep qb">
+      <div class="vd to/2">
+        <label class="rc ac" for="fullname">Full name</label>
+          <input
+            type="text"
+            name="fullname"
+            id="fullname"
+            placeholder="Devid Wonder"
+            class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+          />
+      </div>
+
+      <div class="vd to/2">
+        <label class="rc ac" for="email">Email address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="example@gmail.com"
+            class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+          />
+      </div>
+    </div>
+
+      <div class="wb">
+        <label class="rc kk wm vb" for="id_password">Mot de passe</label>
+        <input
+          type="password"
+          name="password"
+          id="id_password"
+          placeholder="**************"
+          class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+        />
+      </div>
+
+      <div class="wb">
+        <label class="rc kk wm vb" for="id_password">Mot de passe</label>
+        <input
+          type="password"
+          name="password"
+          id="id_password"
+          placeholder="**************"
+          class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+        />
+      </div>
+
+      <div class="tc sf yo ap zf ep qb">
+        <div class="vd to/2">
+          <label class="rc kk wm vb" for="id_password">Mot de passe</label>
+          <input
+            type="password"
+            name="password"
+            id="id_password"
+            placeholder="**************"
+            class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+          />
+        </div>
+
+        <div class="vd to/2">
+          <label class="rc kk wm vb" for="id_password">Mot de passe</label>
+          <input
+            type="password"
+            name="password"
+            id="id_password"
+            placeholder="**************"
+            class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+          />
+        </div>
+      </div>
+
+      <button class="vd rj ek rc rg gh lk ml il _l gi hi">
+        Se connecter
+      </button>
+
+      <p class="sj hk xj rj ob">
+        Pas de compte ?
+        <a class="mk" href="{% url 'authentication:signup' %}"> Inscrivez-vous ici </a>
+      </p>
+    </form>
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-  <script src="{% static 'js/main.js' %}"></script>
-</body>
-
-</html>
+</section>
+<!-- ===== SignIn Form End ===== -->
+</main>
+{% endblock content %}

@@ -1,29 +1,60 @@
 {% load static %}
 {% load static i18n %}
 
-<script>
-  window.addEventListener('scroll', function() {
-      var navbar = document.querySelector('nav');
-      if (window.scrollY > 0) {
-          navbar.classList.add('shadow-lg');
-      } else {
-          navbar.classList.remove('shadow-lg');
-      }
-  });
-</script>
+<!-- ===== Header Start ===== -->
+<header
+class="g s r vd ya cj"
+:class="{ 'hh sm _k dj bl ll' : stickyMenu }"
+@scroll.window="stickyMenu = (window.pageYOffset > 20) ? true : false"
+>
+<div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
+  <div class="vd to/4 tc wf yf">
+    <a href="/">
+      <img class="om" src="images/logo-light.svg" alt="Logo Light" />
+      <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
+    </a>
 
-<nav class="bg-white/85 border-gray-200 dark:bg-zinc-900 h-32 fixed top-0 left-0 right-0 pb-24 z-990 m-0">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="{% static 'media/logo/logo.png' %}" class="block w-36 h-32" alt="Logo Dawa Adjala" />
-      </a>
-      <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-        <!-- Dark mode switcher -->
-        {% comment %} <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-          <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-          <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-        </button> {% endcomment %}
-      <!-- Dark mode switcher end -->
+    <!-- Hamburger Toggle BTN -->
+    <button class="po rc" @click="navigationOpen = !navigationOpen">
+      <span class="rc i pf re pd">
+        <span class="du-block h q vd yc">
+          <span class="rc i r s eh um tg te rd eb ml jl dl" :class="{ 'ue el': !navigationOpen }"></span>
+          <span class="rc i r s eh um tg te rd eb ml jl fl" :class="{ 'ue qr': !navigationOpen }"></span>
+          <span class="rc i r s eh um tg te rd eb ml jl gl" :class="{ 'ue hl': !navigationOpen }"></span>
+        </span>
+        <span class="du-block h q vd yc lf">
+          <span class="rc eh um tg ml jl el h na r ve yc" :class="{ 'sd dl': !navigationOpen }"></span>
+          <span class="rc eh um tg ml jl qr h s pa vd rd" :class="{ 'sd rr': !navigationOpen }"></span>
+        </span>
+      </span>
+    </button>
+    <!-- Hamburger Toggle BTN -->
+  </div>
+
+  <div
+    class="vd wo/4 sd qo f ho oo wf yf"
+    :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }"
+  >
+    <nav>
+      <ul class="tc _o sf yo cg ep">
+        <li><a href="/" class="xl" :class="{ 'mk': page === 'home' }">Accueil</a></li>
+        <li><a href="{% url 'about' %}" class="xl" :class="{'mk': page === 'about'}">A propos de nous</a></li>
+        <li><a href="{% url 'hospital:hospital_detail' %}" class="xl" :class="{'mk': page === 'hospital'}">Nos hôpitaux parténaires</a></li>
+      </ul>
+    </nav>
+
+    <div class="tc wf ig pb no">
+      <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
+        <label class="rc ab i">
+          <input type="checkbox" :value="darkMode" @change="darkMode = !darkMode" class="pf vd yc uk h r za ab" />
+          <!-- Icon Sun -->
+          <svg :class="{ 'wn' : page === 'home', 'xh' : page === 'home' && stickyMenu }" class="th om" width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.0908 18.6363C10.3549 18.6363 8.69 17.9467 7.46249 16.7192C6.23497 15.4916 5.54537 13.8268 5.54537 12.0908C5.54537 10.3549 6.23497 8.69 7.46249 7.46249C8.69 6.23497 10.3549 5.54537 12.0908 5.54537C13.8268 5.54537 15.4916 6.23497 16.7192 7.46249C17.9467 8.69 18.6363 10.3549 18.6363 12.0908C18.6363 13.8268 17.9467 15.4916 16.7192 16.7192C15.4916 17.9467 13.8268 18.6363 12.0908 18.6363ZM12.0908 16.4545C13.2481 16.4545 14.358 15.9947 15.1764 15.1764C15.9947 14.358 16.4545 13.2481 16.4545 12.0908C16.4545 10.9335 15.9947 9.8236 15.1764 9.00526C14.358 8.18692 13.2481 7.72718 12.0908 7.72718C10.9335 7.72718 9.8236 8.18692 9.00526 9.00526C8.18692 9.8236 7.72718 10.9335 7.72718 12.0908C7.72718 13.2481 8.18692 14.358 9.00526 15.1764C9.8236 15.9947 10.9335 16.4545 12.0908 16.4545ZM10.9999 0.0908203H13.1817V3.36355H10.9999V0.0908203ZM10.9999 20.8181H13.1817V24.0908H10.9999V20.8181ZM2.83446 4.377L4.377 2.83446L6.69082 5.14828L5.14828 6.69082L2.83446 4.37809V4.377ZM17.4908 19.0334L19.0334 17.4908L21.3472 19.8046L19.8046 21.3472L17.4908 19.0334ZM19.8046 2.83337L21.3472 4.377L19.0334 6.69082L17.4908 5.14828L19.8046 2.83446V2.83337ZM5.14828 17.4908L6.69082 19.0334L4.377 21.3472L2.83446 19.8046L5.14828 17.4908ZM24.0908 10.9999V13.1817H20.8181V10.9999H24.0908ZM3.36355 10.9999V13.1817H0.0908203V10.9999H3.36355Z" fill=""/>
+          </svg>
+          <!-- Icon Sun -->
+          <img class="xc nm" src="{% static 'media/icones/icon-moon.svg' %}" alt="Moon" />
+        </label>
+      </div>
       {% if request.user.is_authenticated%}
           <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
             <span class="sr-only">Open user menu</span>
@@ -49,33 +80,12 @@
             </ul>
           </div>
           {% else %}
-            <a href="{% url 'authentication:login' %}">
-                <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-white focus:outline-none bg-green-700 rounded-md border border-green-700 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Se connecter</button>
-            </a>       
-          {%endif%}
-
-          <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-            </svg>
-        </button>
-      </div>
-
-      <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-        <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          <li>
-            <a href="/" class="block py-2 px-3 text-black  rounded md:bg-transparent md:text-green-700 md:p-0 md:dark:text-white" aria-current="page">Accueil</a>
-          </li>
-          <li>
-            <a href="{% url 'about' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">A propos de nous</a>
-          </li>
-          <li>
-            <a href="{% url 'hospital:hospital_detail' %}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-green-700 md:p-0 dark:text-white md:dark:hover:text-green-700 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Hôpitaux parténaires</a>
-          </li>
-        </ul>
-      </div>
-
+      <a href="{% url 'authentication:login' %}" :class="{ 'hh/[0.15]' : page === 'home', 'sh' : page === 'home' && stickyMenu }" class="lk gh dk rg tc wf xf _l gi hi">Se connecter</a>
+      {%endif%}
     </div>
-  </nav>
- 
+  </div>
+</div>
+</header>
+
+  <!-- ===== Header End ===== -->
+  
