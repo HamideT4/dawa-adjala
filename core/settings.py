@@ -118,6 +118,9 @@ DATABASES = {
     }
 }
 
+TWILIO_ACCOUNT_SID = str (os.getenv('TWILIO_ACCOUNT_SID'))
+TWILIO_AUTH_TOKEN = str (os.getenv('TWILIO_AUTH_TOKEN'))
+TWILIO_PHONE_NUMBER = str (os.getenv('TWILIO_PHONE_NUMBER'))
 
 
 # Password validation
@@ -155,6 +158,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+USE_L10N = False
+
+DATE_INPUT_FORMATS = ['%d/%m/%Y']  
 
 
 # Static files (CSS, JavaScript, Images)

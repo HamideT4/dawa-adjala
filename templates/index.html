@@ -1,8 +1,10 @@
 {% extends "_base.html" %}
 {% load static %}
 {% load static i18n %}
+{% block title %} Dawa Adjala | Accueil {% endblock %}
 
 {% block content %}
+
 <body
     x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
     x-init="
@@ -17,41 +19,6 @@
     <div class="xc fn zd/2 2xl:ud-w-187.5 bd 2xl:ud-h-171.5 h q r">
       <img src="{% static 'media/home/download.svg' %}" alt="shape" class="h q r" />
       <img src="{% static 'media/home/home.png' %}" alt="hero" class="h q r ua" />
-      {% comment %} <span class="absolute -bottom-8 -left-8 z-[-1]">
-        <svg
-          width="93"
-          height="93"
-          viewBox="0 0 93 93"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="2.5" cy="2.5" r="2.5" fill="#166534" />
-          <circle cx="2.5" cy="24.5" r="2.5" fill="#166534" />
-          <circle cx="2.5" cy="46.5" r="2.5" fill="#166534" />
-          <circle cx="2.5" cy="68.5" r="2.5" fill="#166534" />
-          <circle cx="2.5" cy="90.5" r="2.5" fill="#166534" />
-          <circle cx="24.5" cy="2.5" r="2.5" fill="#166534" />
-          <circle cx="24.5" cy="24.5" r="2.5" fill="#166534" />
-          <circle cx="24.5" cy="46.5" r="2.5" fill="#166534" />
-          <circle cx="24.5" cy="68.5" r="2.5" fill="#166534" />
-          <circle cx="24.5" cy="90.5" r="2.5" fill="#166534" />
-          <circle cx="46.5" cy="2.5" r="2.5" fill="#166534" />
-          <circle cx="46.5" cy="24.5" r="2.5" fill="#166534" />
-          <circle cx="46.5" cy="46.5" r="2.5" fill="#166534" />
-          <circle cx="46.5" cy="68.5" r="2.5" fill="#166534" />
-          <circle cx="46.5" cy="90.5" r="2.5" fill="#166534" />
-          <circle cx="68.5" cy="2.5" r="2.5" fill="#166534" />
-          <circle cx="68.5" cy="24.5" r="2.5" fill="#166534" />
-          <circle cx="68.5" cy="46.5" r="2.5" fill="#166534" />
-          <circle cx="68.5" cy="68.5" r="2.5" fill="#166534" />
-          <circle cx="68.5" cy="90.5" r="2.5" fill="#166534" />
-          <circle cx="90.5" cy="2.5" r="2.5" fill="#166534" />
-          <circle cx="90.5" cy="24.5" r="2.5" fill="#166534" />
-          <circle cx="90.5" cy="46.5" r="2.5" fill="#166534" />
-          <circle cx="90.5" cy="68.5" r="2.5" fill="#166534" />
-          <circle cx="90.5" cy="90.5" r="2.5" fill="#166534" />
-        </svg>
-      </span> {% endcomment %}
     </div>
 
     <!-- Hero Content -->
@@ -88,22 +55,22 @@
       <div class="tc uf zo xf ap zf bp mq">
         <!-- Small Features Item -->
         <div class="animate_top kn to/3 tc cg oq">
-          <div class="tc wf xf cf ae cd rg mh">
+          <div class="tc wf xf cf ae cd rg mhi">
             <img src="{% static 'media/home/icon-01.svg' %}" alt="Icon" />
           </div>
           <div>
-            <h4 class="ek yj go kk wm xb">Assistance 7j/7</h4>
+            <h4 class="ek yj go kk wm xb">Assistance 24h/24 et 7j/7</h4>
             <p>Lorem ipsum dolor sit amet conse adipiscing elit.</p>
           </div>
         </div>
 
         <!-- Small Features Item -->
         <div class="animate_top kn to/3 tc cg oq">
-          <div class="tc wf xf cf ae cd rg gh">
+          <div class="tc wf xf cf ae cd rg mh">
             <img src="{% static 'media/home/icon-02.svg' %}" alt="Icon" />
           </div>
           <div>
-            <h4 class="ek yj go kk wm xb">Expérience simplifiée</h4>
+            <h4 class="ek yj go kk wm xb">Optimisation des processus</h4>
             <p>Lorem ipsum dolor sit amet conse adipiscing elit.</p>
           </div>
         </div>
@@ -114,7 +81,7 @@
             <img src="{% static 'media/home/icon-03.svg' %}" alt="Icon" />
           </div>
           <div>
-            <h4 class="ek yj go kk wm xb">Team Work</h4>
+            <h4 class="ek yj go kk wm xb">Gestion des risques.</h4>
             <p>Lorem ipsum dolor sit amet conse adipiscing elit.</p>
           </div>
         </div>
@@ -233,7 +200,7 @@
   <section class="lj tp kr">
     <!-- Section Title Start -->
     <div
-      x-data="{ sectionTitle: `Nous affrons la meilleure qualité de service pour vous`, sectionTitleText: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam ante in maximus.`}"
+      x-data="{ sectionTitle: `Nous offrons la meilleure qualité de service pour vous`, sectionTitleText: `Donnez la possibilité d’accès aux soins médicaux de qualité et à temps à la population vulnérable`}"
     >
       <div class="animate_top bb ze rj ki xn vq">
 <h2
@@ -251,46 +218,13 @@
     <div class="bb ze ki xn yq mb en">
       <div class="wc qf pn xo ng">
         <!-- Service Item -->
+        {% for service in service %}
         <div class="animate_top sg oi pi zq ml il am cn _m">
-          <img src="images/icon-04.svg" alt="Icon" />
-          <h4 class="ek zj kk wm nb _b">Crafted for Startups</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.</p>
+          <img src="{{service.image.url}}" alt="Icon" />
+          <h4 class="ek zj kk wm nb _b">{{service.name}}</h4>
+          <p class="text-justify"> {{service.description}} </p>
         </div>
-
-        <!-- Service Item -->
-        <div class="animate_top sg oi pi zq ml il am cn _m">
-          <img src="images/icon-05.svg" alt="Icon" />
-          <h4 class="ek zj kk wm nb _b">High-quality Design</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.</p>
-        </div>
-
-        <!-- Service Item -->
-        <div class="animate_top sg oi pi zq ml il am cn _m">
-          <img src="images/icon-06.svg" alt="Icon" />
-          <h4 class="ek zj kk wm nb _b">All Essential Sections</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.</p>
-        </div>
-
-        <!-- Service Item -->
-        <div class="animate_top sg oi pi zq ml il am cn _m">
-          <img src="images/icon-07.svg" alt="Icon" />
-          <h4 class="ek zj kk wm nb _b">Speed Optimized</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.</p>
-        </div>
-
-        <!-- Service Item -->
-        <div class="animate_top sg oi pi zq ml il am cn _m">
-          <img src="images/icon-05.svg" alt="Icon" />
-          <h4 class="ek zj kk wm nb _b">Fully Customizable</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.</p>
-        </div>
-
-        <!-- Service Item -->
-        <div class="animate_top sg oi pi zq ml il am cn _m">
-          <img src="images/icon-06.svg" alt="Icon" />
-          <h4 class="ek zj kk wm nb _b">Regular Updates</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor.</p>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -298,16 +232,11 @@
 
   <!-- ===== Pricing Table Start ===== -->
   <section x-data="setup()" class="i pg fh rm ji gp uq">
-    <!-- Bg Shapes -->
-    <img src="images/shape-06.svg" alt="Shape" class="h aa y" />
-    <img src="images/shape-03.svg" alt="Shape" class="h ca u" />
-    <img src="images/shape-07.svg" alt="Shape" class="h w da ee" />
-    <img src="images/shape-12.svg" alt="Shape" class="h p s" />
-    <img src="images/shape-13.svg" alt="Shape" class="h r q" />
+  
 
     <!-- Section Title Start -->
     <div
-      x-data="{ sectionTitle: `We Offer Great Affordable Premium Prices.`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
+      x-data="{ sectionTitle: `Vous avez des questions.`, sectionTitleText: `Consulter notre section FAQ pour avoir toutes les reponses.`}"
     >
       <div class="animate_top bb ze rj ki xn vq">
 <h2
@@ -322,58 +251,9 @@
     </div>
     <!-- Section Title End -->
 
-    <!-- Pricing switcher -->
-    <div class="tc wf xf jb og">
-      <span class="ek kk wm">Bill Monthly</span>
-      <button class="i rg gm" x-cloak @click="billPlan == 'monthly' ? billPlan = 'annually' : billPlan = 'monthly'">
-        <div class="fe id bl gh rg xk outline-none"></div>
-        <div
-          class="h vc wf xf ge jd cl jl ml mf hh rg yk ea fa"
-          :class="{ 'ff': billPlan == 'monthly', 'gf': billPlan == 'annually' }"
-        ></div>
-      </button>
-      <span class="ek kk wm">Bill Annually</span>
-    </div>
-
     <!-- Pricing Table -->
     <div class="bb ze i va ki xn yq bc">
-      <div class="wc qf pn xo jg">
-        <template x-for="(plan, i) in plans" x-key="i">
-          <!-- Pricing Item -->
-          <div class="animate_top rj sg hh sm vk xm hi nj oj">
-            <h4 x-text="plan.name" class="wj kk wm fb"></h4>
-
-            <div class="tc wf xf kg cc">
-              <h2
-                :class="plan.name == 'Basic' ? 'text-green-500' : ''"
-                x-text="`$${billPlan == 'monthly' ? plan.price.monthly : plan.price.annually}`"
-                class="fk _j kk wm"
-              ></h2>
-              <span x-text="billPlan == 'monthly' ? '/per month' : '/per year'" class="sc ak kk wm"></span>
-            </div>
-
-            <p class="ur dc">No credit card required</p>
-
-            <!-- Button -->
-            <a
-              href="#"
-              class="ek rg lk ml il gi ri"
-              :class="plan.name == 'Growth Plan' ? 'gh sl' : 'mh tl'"
-            >
-              Try for free
-            </a>
-
-            <!-- Features -->
-            <ul class="tc sf bg ob fb">
-              <template x-for="(feature, i) in plan.features" x-key="i">
-                <li x-text="feature"></li>
-              </template>
-            </ul>
-
-            <p class="kk wm">7-day free trial</p>
-          </div>
-        </template>
-      </div>
+          {% include "includes/faq.html" %}
     </div>
   </section>
   <!-- ===== Pricing Table End ===== -->
@@ -382,16 +262,13 @@
   <section class="pg pj vp mr oj wp nr">
     <!-- Section Title Start -->
     <div
-      x-data="{ sectionTitle: `We Offer Great Affordable Premium Prices.`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
+      x-data="{ sectionTitle: `Nous offrons d'excellents prix abordables.`}"
     >
       <div class="animate_top bb ze rj ki xn vq">
 <h2
         x-text="sectionTitle"
         class="fk vj pr kk wm on/5 gq/2 bb _b"
 >
-</h2>
-<p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
-</div>
 
 
     </div>
@@ -408,7 +285,7 @@
           :class="{ 'gh lk' : filterTab === 1 }"
           class="project-tab-btn ek rg ml il vi mi"
         >
-          All
+          Tout
         </button>
         <button
           data-filter=".branding"
@@ -416,7 +293,7 @@
           :class="{ 'gh lk' : filterTab === 2 }"
           class="project-tab-btn ek rg ml il vi mi"
         >
-          Branding Strategy
+          Epargne
         </button>
         <button
           data-filter=".digital"
@@ -424,7 +301,7 @@
           :class="{ 'gh lk' : filterTab === 3 }"
           class="project-tab-btn ek rg ml il vi mi"
         >
-          Digital Experiences
+          Transfert d'argent
         </button>
         <button
           data-filter=".ecommerce"
@@ -432,7 +309,7 @@
           :class="{ 'gh lk' : filterTab === 4 }"
           class="project-tab-btn ek rg ml il vi mi"
         >
-          Ecommerce
+          Banque de santé
         </button>
       </div>
 
@@ -442,7 +319,7 @@
         <!-- Project Item -->
         <div class="project-item wi fb vd jn/2 to/3 branding ecommerce">
           <div class="c i pg sg z-1">
-            <img src="images/project-01.png" alt="Project" />
+            <img src="{% static 'media/services/banque_de_sante.png' %}" alt="Project" />
 
             <div 
               class="h s r df nl kl im tc sf wf xf vd yc sg al hh/20 z-10"
@@ -464,7 +341,7 @@
         <!-- Project Item -->
         <div class="project-item wi fb vd jn/2 to/3 digital">
           <div class="c i pg sg z-1">
-            <img src="images/project-02.png" alt="Project" />
+            <img src="{% static 'media/services/sante_mobile.png' %}" alt="Project" />
 
             <div
               class="h s r df nl kl im tc sf wf xf vd yc sg al hh/20 z-10"
@@ -486,7 +363,7 @@
         <!-- Project Item -->
         <div class="project-item wi fb vd jn/2 to/3 branding ecommerce">
           <div class="c i pg sg z-1">
-            <img src="images/project-04.png" alt="Project" />
+            <img src="{% static 'media/services/epargne.png' %}" alt="Project" />
 
             <div
               class="h s r df nl kl im tc sf wf xf vd yc sg al hh/20 z-10"
@@ -508,7 +385,7 @@
         <!-- Project Item -->
         <div class="project-item wi fb vd vo/3 digital ecommerce">
           <div class="c i pg sg z-1">
-            <img src="images/project-03.png" alt="Project" />
+            <img src="{% static 'media/services/transfert_argent.png' %}" alt="Project" />
 
             <div
               class="h s r df nl kl im tc sf wf xf vd yc sg al hh/20 z-10"
@@ -535,7 +412,7 @@
   <section class="hj rp hr">
     <!-- Section Title Start -->
     <div
-      x-data="{ sectionTitle: `Client’s Testimonials`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
+      x-data="{ sectionTitle: `Temoignages`}"
     >
       <div class="animate_top bb ze rj ki xn vq">
 <h2
@@ -543,7 +420,6 @@
         class="fk vj pr kk wm on/5 gq/2 bb _b"
 >
 </h2>
-<p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
 </div>
 
 
@@ -613,20 +489,16 @@
 
   <!-- ===== Counter Start ===== -->
   <section class="i pg qh rm ji hp">
-    <img src="images/shape-11.svg" alt="Shape" class="of h ga ha ke" />
-    <img src="images/shape-07.svg" alt="Shape" class="h ia o ae jf" />
-    <img src="images/shape-14.svg" alt="Shape" class="h ja ka" />
-    <img src="images/shape-15.svg" alt="Shape" class="h q p" />
 
     <div class="bb ze i va ki xn br">
       <div class="tc uf sn tn xf un gg">
         <div class="animate_top me/5 ln rj">
-          <h2 class="gk vj zp or kk wm hc">785</h2>
-          <p class="ek bk aq">Global Brands</p>
+          <h2 class="gk vj zp or kk wm hc">{{total_users}}</h2>
+          <p class="ek bk aq">Utilisateurs</p>
         </div>
         <div class="animate_top me/5 ln rj">
-          <h2 class="gk vj zp or kk wm hc">533</h2>
-          <p class="ek bk aq">Happy Clients</p>
+          <h2 class="gk vj zp or kk wm hc">{{approved_hospitals}}</h2>
+          <p class="ek bk aq">Hôpitaux parténaires</p>
         </div>
         <div class="animate_top me/5 ln rj">
           <h2 class="gk vj zp or kk wm hc">865</h2>
@@ -645,7 +517,7 @@
   <section class="pj vp mr">
     <!-- Section Title Start -->
     <div
-      x-data="{ sectionTitle: `Trusted by Global Brands`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
+      x-data="{ sectionTitle: `Nos parténaires`}"
     >
       <div class="animate_top bb ze rj ki xn vq">
 <h2
@@ -653,7 +525,6 @@
         class="fk vj pr kk wm on/5 gq/2 bb _b"
 >
 </h2>
-<p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
 </div>
 
 
@@ -661,31 +532,20 @@
     <!-- Section Title End -->
 
     <div class="bb ze ah ch pm hj xp ki xn 2xl:ud-px-49 bc">
-      <div class="wc rf qn zf cp kq xf wf">
+      <div class="wc sdf zf cp kq xf wf ">
         <a href="#" class="rc animate_top">
-          <img class="th wl ml il zl om" src="images/brand-light-01.svg" alt="Clients" />
-          <img class="xc sk ml il zl nm" src="images/brand-dark-01.svg" alt="Clients" />
+          <img class="th wl ml il zl om" src="{% static 'media/partners/pnud.jpg' %}" alt="Clients" />
+          <img class="xc sk ml il zl nm" src="{% static 'media/partners/pnud.jpg' %}" alt="Clients" />
         </a>
         <a href="#" class="rc animate_top">
-          <img class="tk ml il zl om" src="images/brand-light-02.svg" alt="Clients" />
-          <img class="xc sk ml il zl nm" src="images/brand-dark-02.svg" alt="Clients" />
+          <img class="tk ml il zl om" src="{% static 'media/partners/misn.png' %}" alt="Clients" />
+          <img class="xc sk ml il zl nm" src="{% static 'media/partners/misn.png' %}" alt="Clients" />
         </a>
         <a href="#" class="rc animate_top">
-          <img class="tk ml il zl om" src="images/brand-light-03.svg" alt="Clients" />
-          <img class="xc sk ml il zl nm" src="images/brand-dark-03.svg" alt="Clients" />
+          <img class="tk ml il zl om" src="{% static 'media/partners/smart_village.png' %}" alt="Clients" />
+          <img class="xc sk ml il zl nm" src="{% static 'media/partners/smart_village.png' %}" alt="Clients" />
         </a>
-        <a href="#" class="rc animate_top">
-          <img class="tk ml il zl om" src="images/brand-light-04.svg" alt="Clients" />
-          <img class="xc sk ml il zl nm" src="images/brand-dark-04.svg" alt="Clients" />
-        </a>
-        <a href="#" class="rc animate_top">
-          <img class="tk ml il zl om" src="images/brand-light-05.svg" alt="Clients" />
-          <img class="xc sk ml il zl nm" src="images/brand-dark-05.svg" alt="Clients" />
-        </a>
-        <a href="#" class="rc animate_top">
-          <img class="tk ml il zl om" src="images/brand-light-06.svg" alt="Clients" />
-          <img class="xc sk ml il zl nm" src="images/brand-dark-06.svg" alt="Clients" />
-        </a>
+        
       </div>
     </div>
   </section>
@@ -695,7 +555,7 @@
   <section class="ji gp uq">
     <!-- Section Title Start -->
     <div
-      x-data="{ sectionTitle: `Latest Blogs & News`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
+      x-data="{ sectionTitle: `Nos récentes activités`}"
     >
       <div class="animate_top bb ze rj ki xn vq">
 <h2
@@ -703,7 +563,6 @@
         class="fk vj pr kk wm on/5 gq/2 bb _b"
 >
 </h2>
-<p class="bb on/5 wo/5 hq" x-text="sectionTitleText"></p>
 </div>
 
 
@@ -713,15 +572,16 @@
     <div class="bb ye ki xn vq jb jo">
       <div class="wc qf pn xo zf iq">
         <!-- Blog Item -->
+        {% for new in news %}
         <div class="animate_top sg vk rm xm">
           <div class="c rc i z-1 pg">
-            <img class="w-full" src="images/blog-01.png" alt="Blog" />
+            <img class="w-full" src="{{ new.image.all.1.image.url }}" alt="Blog" />
 
             <div
               class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10"
             >
-              <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi"
-                >Read More</a
+              <a href="{% url 'news_detail' new_id=new.id %}" class="vc ek rg lk gh sl ml il gi hi"
+                >En savoir plus</a
               >
             </div>
           </div>
@@ -729,81 +589,21 @@
           <div class="yh">
             <div class="tc uf wf ag jq">
               <div class="tc wf ag">
-                <img src="images/icon-man.svg" alt="User" />
-                <p>Musharof Chy</p>
+                <img src="{% static 'media/home/icon-man.svg' %}" alt="User" />
+                <p>{{new.author}}</p>
               </div>
               <div class="tc wf ag">
-                <img src="images/icon-calender.svg" alt="Calender" />
-                <p>25 Dec, 2025</p>
+                <img src="{% static 'media/home/icon-calender.svg' %}" alt="Calender" />
+                <p>{{new.date}}</p>
               </div>
             </div>
             <h4 class="ek tj ml il kk wm xl eq lb">
-              <a href="blog-single.html">Free advertising for your online business</a>
+              <a href="{% url 'news_detail' new_id=new.id %}">{{new.title}}</a>
             </h4>
           </div>
         </div>
-
-        <!-- Blog Item -->
-        <div class="animate_top sg vk rm xm">
-          <div class="c rc i z-1 pg">
-            <img class="w-full" src="images/blog-02.png" alt="Blog" />
-
-            <div
-              class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10"
-            >
-              <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi"
-                >Read More</a
-              >
-            </div>
-          </div>
-
-          <div class="yh">
-            <div class="tc uf wf ag jq">
-              <div class="tc wf ag">
-                <img src="images/icon-man.svg" alt="User" />
-                <p>Musharof Chy</p>
-              </div>
-              <div class="tc wf ag">
-                <img src="images/icon-calender.svg" alt="Calender" />
-                <p>25 Dec, 2025</p>
-              </div>
-            </div>
-            <h4 class="ek tj ml il kk wm xl eq lb">
-              <a href="blog-single.html">9 simple ways to improve your design skills</a>
-            </h4>
-          </div>
-        </div>
-
-        <!-- Blog Item -->
-        <div class="animate_top sg vk rm xm">
-          <div class="c rc i z-1 pg">
-            <img class="w-full" src="images/blog-03.png" alt="Blog" />
-
-            <div
-              class="im h r s df vd yc wg tc wf xf al hh/20 nl il z-10"
-            >
-              <a href="./blog-single.html" class="vc ek rg lk gh sl ml il gi hi"
-                >Read More</a
-              >
-            </div>
-          </div>
-
-          <div class="yh">
-            <div class="tc uf wf ag jq">
-              <div class="tc wf ag">
-                <img src="images/icon-man.svg" alt="User" />
-                <p>Musharof Chy</p>
-              </div>
-              <div class="tc wf ag">
-                <img src="images/icon-calender.svg" alt="Calender" />
-                <p>25 Dec, 2025</p>
-              </div>
-            </div>
-            <h4 class="ek tj ml il kk wm xl eq lb">
-              <a href="blog-single.html">Tips to quickly improve your coding speed.</a>
-            </h4>
-          </div>
-        </div>
+        {% endfor %}
+      
       </div>
     </div>
   </section>
@@ -811,16 +611,10 @@
 
   <!-- ===== Contact Start ===== -->
   <section id="support" class="i pg fh rm ji gp uq">
-    <!-- Bg Shapes -->
-    <img src="images/shape-06.svg" alt="Shape" class="h aa y" />
-    <img src="images/shape-03.svg" alt="Shape" class="h ca u" />
-    <img src="images/shape-07.svg" alt="Shape" class="h w da ee" />
-    <img src="images/shape-12.svg" alt="Shape" class="h p s" />
-    <img src="images/shape-13.svg" alt="Shape" class="h r q" />
-
+    
     <!-- Section Title Start -->
     <div
-      x-data="{ sectionTitle: `Let’s Stay Connected`, sectionTitleText: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using.`}"
+      x-data="{ sectionTitle: `Restons connectés !`, sectionTitleText: `Favorisez la communication pour un meilleur suivi et une relation client enrichie et personnalisée.`}"
     >
       <div class="animate_top bb ze rj ki xn vq">
 <h2
@@ -977,27 +771,7 @@
   <!-- ===== Contact End ===== -->
 
   <!-- ===== CTA Start ===== -->
-  <section class="i pg gh ji">
-<!-- Bg Shape -->
-
-<div class="bb ye i z-10 ki xn dr">
-<div class="tc uf sn tn un gg">
-  <div class="animate_left to/2">
-    <h2 class="fk vj zp pr lk ac">
-        Join with 5000+ Startups Growing with Base.
-    </h2>
-    <p class="lk">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis nibh lorem. Duis sed odio lorem. In a efficitur leo. Ut venenatis rhoncus.
-    </p>
-  </div>
-  <div class="animate_right bf">
-    <a href="#" class="vc ek kk hh rg ol il cm gi hi">
-        Get Started Now
-    </a>
-  </div>
-</div>
-</div>
-</section>
+  {% include "includes/CTA.html" %}
 
   <!-- ===== CTA End ===== -->
 </main>

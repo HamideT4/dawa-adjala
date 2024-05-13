@@ -1189,6 +1189,9 @@
   .rf{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+  .sdf{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   .sf{
     flex-direction: column;
   }
@@ -1351,8 +1354,14 @@
   }
   .mh{
     --tw-bg-opacity: 1;
+    background-color: rgb(49 183 244 / var(--tw-bg-opacity));
+  }
+
+  .mhi{
+    --tw-bg-opacity: 1;
     background-color: rgb(243 106 141 / var(--tw-bg-opacity));
   }
+  
   .nh{
     --tw-bg-opacity: 1;
     background-color: rgb(32 202 102 / var(--tw-bg-opacity));

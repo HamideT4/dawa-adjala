@@ -10,7 +10,14 @@
     {% block extrastyle %}{% endblock extrastyle %}
 </head>
 
-<body class="m-0 font-sans text-base antialiased font-normal dark:bg-zinc-800 leading-default bg-gray-50 text-black">
+<body
+    x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+    x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'b eh': darkMode === true} m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50"
+  >
+{% comment %} <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-black"> {% endcomment %}
   {% block overlay %}
     <div class="absolute w-full bg-green-700 dark:hidden min-h-72"></div>
   {% endblock overlay %}
@@ -29,7 +36,7 @@
         {% endblock content %}
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-  <script src="{% static 'js/main.js' %}"></script>
+  <script defer src="{% static 'js/bundle.js' %}"></script>
 </body>
 
 </html>

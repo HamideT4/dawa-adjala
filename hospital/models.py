@@ -18,6 +18,7 @@ class Hospital(models.Model):
     uid = models.CharField(max_length=255, unique=True, default=generate_hospital_uid, editable=False)
     name = models.CharField(max_length=255)
     address = models.TextField()
+    phone_number = models.CharField(max_length=20, blank=True)
     description = models.TextField()
     photo = models.ImageField(upload_to='hospital_photos/')
     is_approuved = models.BooleanField(default=False)

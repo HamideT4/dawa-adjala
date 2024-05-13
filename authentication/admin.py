@@ -5,13 +5,13 @@ from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import User
 
 class UserAdmin(BaseUserAdmin):
-    ordering = ['first_name']
+    ordering = ['email']
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = User
-    list_display = ['first_name', 'last_name', 'email', 'address', 'gender', 'avatar', 'phone_number', 'is_staff', 'is_active']
-    list_display_links = ['first_name', 'last_name']
-    list_filter = ['first_name', 'is_active']
+    list_display = ['email', 'first_name', 'last_name', 'address', 'gender', 'avatar', 'phone_number', 'is_staff', 'is_active']
+    list_display_links = ["email"]
+    list_filter = ["email", "is_staff", "is_active"]
     search_fields = ['first_name']
     fieldsets = (
         (
@@ -23,7 +23,7 @@ class UserAdmin(BaseUserAdmin):
         (
             _('Personnal Information'),
             {
-                'fields': ('first_name', 'last_name', 'address', 'gender', 'phone_number', 'avatar',)
+                'fields': ('first_name', 'last_name', 'address', 'gender', 'birth_date', 'phone_number', 'avatar',)
             },
         ),
         (
@@ -42,8 +42,9 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('first_name', 'last_name', 'address', 'gender', 'phone_number', 'password1', 'password2', 'is_staff', 'is_active'),
+            'fields': ('email', 'first_name', 'last_name', 'address', 'birth_date', 'gender', 'avatar', 'phone_number', 'password1', 'password2', 'is_staff', 'is_active'),
         },),
     )
+    
 
 admin.site.register(User, UserAdmin)

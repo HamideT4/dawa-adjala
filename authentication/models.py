@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.utils.translation import gettext_lazy as _ 
 from .managers import CustomUserManager
+#from accounts.models import Account
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -17,8 +18,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     birth_date = models.DateField(null=True, blank=True)
     address = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=20, null=True)
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
-    qr_code = models.ImageField(upload_to='qrcodes/', blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars/', default='avatars/avatar.png')
+    qr_code = models.FileField(upload_to='qrcodes/', blank=True, null=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     date_joined =  models.DateTimeField(auto_now_add=True)

@@ -20,6 +20,12 @@ def create_user_account(sender, instance, created, **kwargs):
         # Create a new account:
         account = Account.objects.create(owner=instance)
 
+        # Récupérer le numéro de compte de l'utilisateur nouvellement créé
+        account_number = account.account_unique_identifier
+
+        # Solde initial du compte nouvellement créé (par défaut 0)
+        balance = account.balance
+
         # Generate QRCode data
         qr_data = f"Nom: {instance.get_full_name}\n"
         qr_data += f"Genre: {instance.gender}\n"
@@ -45,28 +51,26 @@ def create_user_account(sender, instance, created, **kwargs):
         # Save the QRCode image to the user's qr_code field
         instance.qr_code.save(f'{instance.first_name}_qrcode.png', ContentFile(qr_code_bytes.read()), save=True)
 
-        # Create a new rechargebook for the user
+        # # Create a new rechargebook for the user
         rechargebook = Rechargebook.objects.create(owner=instance)
 
-        # Generate rechargebook's html content using templates
+        # # Generate rechargebook's html content using templates
         context = {
             'owner': instance,
+            'account_number': account_number,
+            'balance': balance,
         }
         html_content = render_to_string('rechargebook/index.html', context)
 
-        # # Convert html content to image
-        # image_path = f'image_livrets/{instance.first_name}_livret_de_paiement.png'
-        # with default_storage.open(image_path, 'wb') as img_file:
-        #     imgkit.from_string(html_content, img_file)
+        # Save the html content in rechargebook model
+        rechargebook.html_content = html_content
+        rechargebook.save()
 
-        # # Save the image in rechargebook model
-        # rechargebook.image_file.save(f'{instance.first_name}_livret_de_paiement.png', ContentFile(default_storage.open(image_path, 'rb').read()), save=True)
-        
-        # Convert html content to pdf
-        pdf_content = weasyprint.HTML(string=html_content).write_pdf()
+        # # Convert html content to pdf
+        # pdf_content = weasyprint.HTML(string=html_content).write_pdf(stylesheets=[weasyprint.CSS(string='@page { size: landscape; }')])
 
-        # Save the pdf in rechargebook model
-        rechargebook.pdf_file.save(f'{instance.first_name}_livret_de_paiement.pdf', ContentFile(pdf_content), save=True)
+        # # Save the pdf in rechargebook model
+        # rechargebook.pdf_file.save(f'{instance.first_name}_livret_de_paiement.pdf', ContentFile(pdf_content), save=True)
 
         # Envoi de notification par e-mail
         subject = 'Bienvenue sur Dawa Adjala !'

@@ -14,6 +14,7 @@ urlpatterns = [
     path('profile/<int:pk>/', login_required(UserView.as_view()), name='profile'),
     path('signup/', views.signup, name='signup'),
     path('user-dashboard/', login_required(views.user_dashbord), name='user_dashboad'),
+    path('view-rechargebook/', login_required(views.view_rechargebook), name='view_rechargebook'),
 ]
 
 if settings.DEBUG:

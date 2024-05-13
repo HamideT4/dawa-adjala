@@ -1,6 +1,7 @@
 {% extends "_base.html" %}
 {% load static %}
-{% load static i18n %}
+{% block title %} Dawa Adjala | Inscription {% endblock %}
+
 
 {% block content %}
 <main>
@@ -12,11 +13,13 @@
     <!-- Bg Border -->
     <span class="rc h r s zd/2 od zg gh"></span>
     <span class="rc h r q zd/2 od xg mh"></span>
+    <img class="mx-auto h-12 w-24 mb-12" src="{% static 'media/logo/logo.svg' %}" alt="Dawa Adjala" >
+
     <div class="rj">
-      <h2 class="ek ck kk wm xb">Connectez-vous à votre compte</h2>
+      <h2 class="ek ck kk wm xb">Créer gratuitement votre compte</h2>
     </div>
 
-    <form class="sb" action="{% url 'authentication:login' %}" method="POST">
+    <form class="sb" action="{% url 'authentication:signup' %}" method="POST">
       {% csrf_token %}
         {% if messages %}
         <ul class="messages">
@@ -26,135 +29,175 @@
         </ul>
         {% endif %}
 
-      <div class="tc sf yo ap zf ep qb">
-        <div class="vd to/2">
-          <label class="rc ac" for="fullname">Full name</label>
-            <input
-              type="text"
-              name="fullname"
-              id="fullname"
-              placeholder="Devid Wonder"
-              class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
-            />
+        <h6 class="sj mk xj rj ob"> Informations générales </h6> <br/>
+
+        <div class="tc sf yo ap zf ep qb">
+          
+            <div class="col-span-full">
+              <label for="id_avatar" class="rc kk wm vb">Photo</label>
+              <div class="mt-2 flex items-center gap-x-3">
+                <img id="image-preview" src="#" alt="Aperçu de l'image" class="h-12 w-12 border border-gray-300 rounded">
+                  <input
+                  type="file"
+                  name="avatar"
+                  id="id_avatar"
+                  accept="image/*"
+                  class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+                  
+                />
+                
+              </div>
+         
+          </div>
+
         </div>
 
-        <div class="vd to/2">
-          <label class="rc ac" for="email">Email address</label>
+        <div class="tc sf yo ap zf ep qb">
+          <div class="vd to/2">
+            <label class="rc kk wm vb" for="id_first_name">Nom</label>
             <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="example@gmail.com"
-              class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
+              type="text"
+              name="first_name"
+              id="id_first_name"
+              placeholder="Nom"
+              class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+              
             />
+          </div>
+  
+          <div class="vd to/2">
+            <label class="rc kk wm vb" for="id_last_name">Prenom</label>
+            <input
+              type="text"
+              name="last_name"
+              id="id_last_name"
+              placeholder="Prenom"
+              class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+              
+            />
+          </div>
         </div>
+
+        <div class="tc sf yo ap zf ep qb">
+          <div class="vd to/2">
+            <label class="rc kk wm vb" for="id_address">Adresse</label>
+            <input
+              type="text"
+              name="address"
+              id="id_address"
+              placeholder="Adresse"
+              class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+              
+            />
+          </div>
+  
+          <div class="vd to/2">
+            <label class="rc kk wm vb" for="id_gender">Genre</label>
+            <div class="mt-2">
+              <select 
+              id="id_gender" name="gender" autocomplete="gender" class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40" >
+                <option>Feminin</option>
+                <option>Masculin</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      <div class="wb">
+        <label class="rc kk wm vb" for="id_birth_date">Date de naissance</label>         
+            <input
+            type="date"
+            name="birth_date"
+            id="id_birth_date" 
+            class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+            value="{{placement.date|date:"d/m/Y" }}"
+            placeholder="Selectionner une date">
       </div>
 
-      <div class="tc sf yo ap zf ep qb">
-        <div class="vd to/2">
-          <label class="rc ac" for="phone">Phone number</label>
+      <div class="wb">
+        <label class="rc kk wm vb" for="id_phone_number">Téléphone</label>         
             <input
-              type="text"
-              name="phone"
-              id="phone"
-              placeholder="+009 3342 3432"
-              class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
-            />
-        </div>
-
-        <div class="vd to/2">
-          <label class="rc ac" for="subject">Subject</label>
-            <input
-              type="text"
-              for="subject"
-              id="subject"
-              placeholder="Type your subject"
-              class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
-            />
-        </div>
-    </div>
-
-    <div class="tc sf yo ap zf ep qb">
-      <div class="vd to/2">
-        <label class="rc ac" for="fullname">Full name</label>
-          <input
             type="text"
-            name="fullname"
-            id="fullname"
-            placeholder="Devid Wonder"
-            class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
-          />
+            name="phone_number"
+            id="id_phone_number" 
+            class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+            
+            placeholder="Numéro de téléphone">
       </div>
 
-      <div class="vd to/2">
-        <label class="rc ac" for="email">Email address</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="example@gmail.com"
-            class="vd ph sg zk xm _g ch pm hm dm dn em pl/50 xi mi"
-          />
-      </div>
-    </div>
+      <h6 class="sj mk xj rj ob"> Informations de connexion </h6> <br/>
 
       <div class="wb">
-        <label class="rc kk wm vb" for="id_password">Mot de passe</label>
+        <label class="rc kk wm vb" for="id_username">E-mail</label>
         <input
-          type="password"
-          name="password"
-          id="id_password"
-          placeholder="**************"
+          type="email"
+          name="email"
+          id="id_username"
+          placeholder="Adresse email"
           class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
-        />
-      </div>
-
-      <div class="wb">
-        <label class="rc kk wm vb" for="id_password">Mot de passe</label>
-        <input
-          type="password"
-          name="password"
-          id="id_password"
-          placeholder="**************"
-          class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+          
         />
       </div>
 
       <div class="tc sf yo ap zf ep qb">
         <div class="vd to/2">
-          <label class="rc kk wm vb" for="id_password">Mot de passe</label>
+          <label class="rc kk wm vb" for="id_password1">Mot de passe</label>
           <input
             type="password"
-            name="password"
-            id="id_password"
-            placeholder="**************"
+            name="password1"
+            id="id_password1"
+            placeholder="Mot de passe"
             class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+            
           />
         </div>
 
         <div class="vd to/2">
-          <label class="rc kk wm vb" for="id_password">Mot de passe</label>
+          <label class="rc kk wm vb" for="id_password2">Confirmer mot de passe</label>
           <input
             type="password"
-            name="password"
-            id="id_password"
-            placeholder="**************"
+            name="password2"
+            id="id_password2"
+             aria-describedby="id_password2_helptext"
+            placeholder="Mot de passe"
             class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40"
           />
         </div>
       </div>
 
       <button class="vd rj ek rc rg gh lk ml il _l gi hi">
-        Se connecter
+        S'inscrire
       </button>
 
       <p class="sj hk xj rj ob">
-        Pas de compte ?
-        <a class="mk" href="{% url 'authentication:signup' %}"> Inscrivez-vous ici </a>
+        Déjà un compte ?
+        <a class="mk" href="{% url 'authentication:login' %}"> Connectez-vous ici </a>
       </p>
     </form>
   </div>
 </section>
 <!-- ===== SignIn Form End ===== -->
+
+<script>
+  const avatarInput = document.getElementById('id_avatar');
+  const imagePreview = document.getElementById('image-preview');
+
+  avatarInput.addEventListener('change', function () {
+    const file = this.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.addEventListener('load', function () {
+        imagePreview.src = reader.result;
+      });
+
+      reader.readAsDataURL(file);
+    } else {
+      imagePreview.src = '#';
+    }
+  });
+</script>
+
 </main>
 {% endblock content %}

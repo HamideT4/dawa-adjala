@@ -7,12 +7,12 @@
     <div class="ji gp">
       <div class="tc uf ap gg fp">
         <div class="animate_top zd/2 to/4">
-          {% comment %} <a href="index.html">
-            <img src="{% static 'media/logo/logo.png' %}" alt="Logo" class="om" />
-            <img src="{% static 'media/logo/logo.png' %}" alt="Logo" class="xc nm" />
-          </a> {% endcomment %}
+          <a href="index.html">
+            <img src="{% static 'media/logo/logo.svg' %}" alt="Logo" class="om h-12 w-28" />
+            <img src="{% static 'media/logo/logo.svg' %}" alt="Logo" class="xc nm h-12 w-28" />
+          </a> 
 
-          <p class="lc fb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p class="lc fb">Rejoignez nous sur nos réseaux sociaux.</p>
 
           <ul class="tc wf cg">
             <li>
@@ -87,15 +87,15 @@
             <h4 class="kk wm tj ec">Quick Links</h4>
 
             <ul>
-              <li><a href="#" class="sc xl vb">Home</a></li>
-              <li><a href="#" class="sc xl vb">Product</a></li>
+              <li><a href="/" class="sc xl vb">Accueil</a></li>
+              <li><a href="{% url 'about' %}" class="sc xl vb">À propos de nous</a></li>
               <li>
                 <a href="#" class="sc xl vb">
-                  Careers 
+                  Nos parténaires 
                   <span class="sc ek uj lk nh rg zi _i nc">Hiring</span>
                 </a>
               </li>
-              <li><a href="#" class="sc xl vb">Pricing</a></li>
+              <li><a href="{% url 'hospital:hospital_detail' %}" class="sc xl vb">Hôpitaux parténaires</a></li>
             </ul>
           </div>
 
@@ -103,10 +103,10 @@
             <h4 class="kk wm tj ec">Services</h4>
 
             <ul>
-              <li><a href="#" class="sc xl vb">Web Development</a></li>
-              <li><a href="#" class="sc xl vb">Graphics Design</a></li>
-              <li><a href="#" class="sc xl vb">Digital Marketing</a></li>
-              <li><a href="#" class="sc xl vb">Ui/Ux Design</a></li>
+              <li><a href="#" class="sc xl vb">Banque de santé</a></li>
+              <li><a href="#" class="sc xl vb">Examens chez soi</a></li>
+              <li><a href="#" class="sc xl vb">Transfert d’argent</a></li>
+              <li><a href="#" class="sc xl vb">Prêt pour soins</a></li>
             </ul>
           </div>
 
@@ -114,16 +114,16 @@
             <h4 class="kk wm tj ec">Support</h4>
 
             <ul>
-              <li><a href="#" class="sc xl vb">Company</a></li>
-              <li><a href="#" class="sc xl vb">Press media</a></li>
-              <li><a href="#" class="sc xl vb">Our Blog</a></li>
-              <li><a href="#" class="sc xl vb">Contact Us</a></li>
+              <li><a href="#" class="sc xl vb">FAQ</a></li>
+              <li><a href="{% url 'about' %}" class="sc xl vb">Notre histoire</a></li>
+              <li><a href="{% url 'about' %}" class="sc xl vb">Notre équipe</a></li>
+              <li><a href="#" class="sc xl vb">Nos contacts</a></li>
             </ul>
           </div>
 
           <div class="animate_top">
             <h4 class="kk wm tj ec">Newsletter</h4>
-            <p class="ac qe">Subscribe to receive future updates</p>
+            <p class="ac qe">Inscrivez-vous à notre newsletter.</p>
 
             <form action="https://formbold.com/s/unique_form_id" method="POST">
               <div class="i">

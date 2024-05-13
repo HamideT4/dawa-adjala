@@ -1,5 +1,12 @@
 {% load static %}
 
+<body
+    x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+    x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'b eh': darkMode === true}"
+  >
 <nav class="flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-end fixed top-0 left-0 right-0 z-990 m-0" navbar-main navbar-scroll="false">
   <div class="mr-4 lg:mt-3 sm:mt-0">
     <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:text-white dark:text-gray-400" type="button">
@@ -123,3 +130,4 @@
   {% comment %} </div>
 </div> {% endcomment %}
 </nav>
+</body>

@@ -10,8 +10,8 @@ class="g s r vd ya cj"
 <div class="bb ze ki xn 2xl:ud-px-0 oo wf yf i">
   <div class="vd to/4 tc wf yf">
     <a href="/">
-      <img class="om" src="images/logo-light.svg" alt="Logo Light" />
-      <img class="xc nm" src="images/logo-dark.svg" alt="Logo Dark" />
+      <img class="om h-12 w-28" src="{% static 'media/logo/logo.svg' %}" alt="Logo Light" />
+      <img class="xc nm h-12 w-28" src="{% static 'media/logo/logo.svg' %}" alt="Logo Dark" />
     </a>
 
     <!-- Hamburger Toggle BTN -->
@@ -38,7 +38,7 @@ class="g s r vd ya cj"
     <nav>
       <ul class="tc _o sf yo cg ep">
         <li><a href="/" class="xl" :class="{ 'mk': page === 'home' }">Accueil</a></li>
-        <li><a href="{% url 'about' %}" class="xl" :class="{'mk': page === 'about'}">A propos de nous</a></li>
+        <li><a href="{% url 'about' %}" class="xl" :class="{'mk': page === 'about'}">A propos</a></li>
         <li><a href="{% url 'hospital:hospital_detail' %}" class="xl" :class="{'mk': page === 'hospital'}">Nos hôpitaux parténaires</a></li>
       </ul>
     </nav>
