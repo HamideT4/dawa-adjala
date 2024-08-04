@@ -1,3 +1,18 @@
+<!--
+=========================================================
+* Soft UI Dashboard Tailwind - v1.0.4
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-tailwind
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+
 {% load static %}
 {% load static i18n %}
 
@@ -7,6 +22,7 @@
 <head>
     {% include "includes/head.html" %}
     <link rel="stylesheet" href="{% static 'css/dashbord-style.css' %}">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
     {% block extrastyle %}{% endblock extrastyle %}
 </head>
 
@@ -35,8 +51,31 @@
             <!-- contenu -->
         {% endblock content %}
   </main>
+  {% include 'includes/scripts.html' %}
+  {% block extra_js %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="{% static 'js/bundle.js' %}"></script>
+  <script>
+    {% if messages %}
+        document.addEventListener("DOMContentLoaded", function(event) {
+            toastr.options = { "closeButton": true, "debug": false, "newestOnTop": true,
+                "progressBar": false, "positionClass": "toast-top-right", "preventDuplicates": true,
+                "onclick": null, "showDuration": "300", "hideDuration": "1000", "timeOut": "5000",
+                "extendedTimeOut": "1000", "showEasing": "swing", "hideEasing": "linear",
+                "showMethod": "fadeIn", "hideMethod": "fadeOut" };
+            {% autoescape off %}
+                {% for msg in messages %}
+                    toastr.{{ msg.level_tag }}("{{ msg }}");
+                {% endfor %}
+            {% endautoescape %}
+        });
+    {% endif %}
+    </script>
+    {% endblock extra_js %}
 </body>
+
 
 </html>

@@ -2,56 +2,22 @@
 {% load static %}
 
 {% block content %}
+<body
+x-data="{ page: 'profile', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+x-init="
+     darkMode = JSON.parse(localStorage.getItem('darkMode'));
+     $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+:class="{'b eh': darkMode === true}"
+>
 
-    <div class="relative w-full mx-auto mt-60 ">
-    <div class="relative flex flex-col flex-auto min-w-0 p-4 mx-6 overflow-hidden break-words bg-white border-0 dark:bg-slate-850 dark:shadow-dark-xl shadow-3xl rounded-2xl bg-clip-border">
-      <div class="flex flex-wrap -mx-3">
-        <div class="flex-none w-auto max-w-full px-3">
-          <div class="relative inline-flex items-center justify-center text-white transition-all duration-200 ease-in-out text-base h-19 w-19 rounded-xl">
-            <img src="{% static 'assets/img/team-1.jpg' %}" alt="profile_image" class="w-full shadow-2xl rounded-xl" />
-          </div>
-        </div>
-        <div class="flex-none w-auto max-w-full px-3 my-auto">
-          <div class="h-full">
-            <h5 class="mb-1 dark:text-white">Sayo Kravits</h5>
-            <p class="mb-0 font-semibold leading-normal dark:text-white dark:opacity-60 text-sm">Public Relations</p>
-          </div>
-        </div>
-        <div class="w-full max-w-full px-3 mx-auto mt-4 sm:my-auto sm:mr-0 md:w-1/2 md:flex-none lg:w-4/12">
-          <div class="relative right-0">
-            <ul class="relative flex flex-wrap p-1 list-none bg-gray-50 rounded-xl" nav-pills role="tablist">
-              <li class="z-30 flex-auto text-center">
-                <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700" nav-link active href="javascript:;" role="tab" aria-selected="true">
-                  <i class="ni ni-app"></i>
-                  <span class="ml-2">App</span>
-                </a>
-              </li>
-              <li class="z-30 flex-auto text-center">
-                <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-all ease-in-out border-0 rounded-lg bg-inherit text-slate-700" nav-link href="javascript:;" role="tab" aria-selected="false">
-                  <i class="ni ni-email-83"></i>
-                  <span class="ml-2">Messages</span>
-                </a>
-              </li>
-              <li class="z-30 flex-auto text-center">
-                <a class="z-30 flex items-center justify-center w-full px-0 py-1 mb-0 transition-colors ease-in-out border-0 rounded-lg bg-inherit text-slate-700" nav-link href="javascript:;" role="tab" aria-selected="false">
-                  <i class="ni ni-settings-gear-65"></i>
-                  <span class="ml-2">Settings</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="w-full p-6 mx-auto">
+  <div class="w-full p-12 mx-auto pt-30">
     <div class="flex flex-wrap -mx-3">
       <div class="w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-0">
         <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
           <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 pb-0">
             <div class="flex items-center">
               <p class="mb-0 dark:text-white/80">Edit Profile</p>
-              <button type="button" class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-blue-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Settings</button>
+              <button type="button" class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-black align-middle transition-all ease-in bg-green-600 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Settings</button>
             </div>
           </div>
           <div class="flex-auto p-6">
@@ -127,7 +93,7 @@
       </div>
       <div class="w-full max-w-full px-3 mt-6 shrink-0 md:w-4/12 md:flex-0 md:mt-0">
         <div class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-          <img class="w-full rounded-t-2xl" src="{{ request.user.avatar.url }}" alt="profile cover image">
+          {% comment %} <img class="w-12 rounded-t-2xl" src="{{ request.user.avatar.url }}" alt="profile cover image"> {% endcomment %}
           <div class="flex flex-wrap justify-center -mx-3">
             <div class="w-4/12 max-w-full px-3 flex-0 ">
               <div class="mb-6 -mt-6 lg:mb-0 lg:-mt-16">
@@ -190,5 +156,5 @@
           </div>
         </div>
       </div>
-
+    </body>
 {% endblock content %}

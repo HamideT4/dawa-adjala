@@ -21,13 +21,13 @@ x-init="
 
           <div class="ro">
             <div class="animate_top rounded-md shadow-solid-13 bg-white dark:bg-blacksection  dark:border-strokedark p-7.5 md:p-10">
-              <img src="{{ first_image.image.url }}" alt="Blog" />
+              <img class="rounded-lg h-120 w-full" src="{{ first_image.image.url }}" alt="Blog" />
 
               <h2 class="ek vj 2xl:ud-text-title-lg kk wm nb gb">{{news.title}}</h2>
 
               <ul class="tc uf cg 2xl:ud-gap-15 fb">
                 <li><span class="rc kk wm">Auteur </span> {{news.author}}</li>
-                <li><span class="rc kk wm">Publié le: </span> {{news.date}} </li>
+                <li><span class="rc kk wm">Publié le: </span> {{news.date|date:"d M Y"}} </li>
               </ul>
 
               <p class="ob text-justify">
@@ -36,7 +36,7 @@ x-init="
 
               <div class="wc qf pn dg cb">
                 {% for image in last_two_images %}
-                    <img src="{{ image.image.url }}" alt="{{ image.name }}">
+                    <img class="rounded-lg h-60 w-full" src="{{ image.image.url }}" alt="{{ image.name }}">
                 {% endfor %}
               </div>
 
@@ -161,7 +161,7 @@ x-init="
               <div>
                 {% for news in all %}
                 <div class="tc fg 2xl:ud-gap-6 qb">
-                  <img src="{{ news.image.all.1.image.url }}" alt="Blog" class="h-24 w-30 rounded-md" />
+                  <img src="{{ news.image.all.1.image.url }}" alt="Blog" class="h-20 w-36 rounded-md" />
                   <h5 class="wj kk wm xl bn ml il">
                     <a href="#">{{news.title}}</a>
                   </h5>

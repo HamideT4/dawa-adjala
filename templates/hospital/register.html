@@ -1,37 +1,128 @@
+{% extends "_base.html" %}
+{% load static %}
 {% load static i18n %}
+{% block title %} Dawa Adjala | Inscription d'un hôpital {% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    {% include "includes/head.html" %}
-</head>
-<body class="dark:bg-zinc-800">
+{% block content %}
+<main>
+  <!-- ===== SignIn Form Start ===== -->
+  <section class="i pg fh rm ki xn vq gj qp gr hj rp hr">
+    <div
+      class="animate_top bb af i va sg hh sm vk xm yi _n jp hi ao kp"
+    >
+      <!-- Bg Border -->
+      <span class="rc h r s zd/2 od zg gh"></span>
+      <span class="rc h r q zd/2 od xg mh"></span>
+      <img class="mx-auto h-12 w-24 mb-12" src="{% static 'media/logo/logo.svg' %}" alt="Dawa Adjala" >
+  
+      <div class="rj">
+        <h2 class="ek ck kk wm xb">Inscrivez votre hôpital</h2>
+      </div>
 
-<div class="row">
-    <div class="col-sm-2"></div>
-      <div class="p-4 mt-5 mb-5 bg-body rounded col-md-8">
-      <center>
-        <style>h3{color: #9370db; font-weight: bold;}</style>
-        <h3>Inscrivez votre hopital</h3>
-        </br>
-      {% if submitted %}
-		    <h1>Votre hopital est inscrit avec succès, elle sera disponible sur la plateforme après approbation de notre équipe.</h1>
-	    {% else %}
-      <form action="", method="POST" enctype="multipart/form-data">  
+        <form class="sb" action="{% url 'hospital:hospital_register' %}" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          {{ form.as_p }}
-        <div class="d-flex justify-content-end mb-2">
-          <button type="submit" class="btn btn-primary mb-3" value="">S'inscrire</button>
+          {% if messages %}
+          <div>
+              {% for message in messages %}
+                  <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+          </div>
+        {% endif %}
+          <div class="wb">
+            <label class="rc kk wm vb" for="id_name">Nom</label>
+            <input
+              type="text"
+              name="name"
+              id="id_name"
+              placeholder="Nom de l'hôpital"
+              class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+            />
+          </div>
+
+          <div class="wb">
+            <label class="rc kk wm vb" for="id_address">Adresse</label>
+            <input
+              type="text"
+              name="address"
+              id="id_address"
+              placeholder="Adresse"
+              class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+            />
+          </div>
+
+          <div class="wb">
+            <label class="rc kk wm vb" for="id_phone_number">Téléphone</label>         
+                <input
+                type="text"
+                name="phone_number"
+                id="id_phone_number" 
+                class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+                placeholder="Numéro de la caisse">
+          </div>
+
+          <div class="wb">
+            <label class="rc kk wm vb" for="id_description">Description</label>         
+                <input
+                type="text"
+                name="description"
+                id="id_description" 
+                class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+                placeholder="Petite descrption de votre structure">
+          </div>
+
+          <div class="tc sf yo ap zf ep qb">
+          
+            <div class="col-span-full">
+              <label for="id_photo" class="rc kk wm vb">Photo</label>
+              <div class="mt-2 flex items-center gap-x-3">
+                <img id="image-preview" src="#" alt="Aperçu de l'image" class="h-12 w-12 border border-gray-300 rounded">
+                  <input
+                  type="file"
+                  name="photo"
+                  id="id_photo"
+                  accept="image/*"
+                  class="vd hh zk _g rg ch hm dm fm pl/50 xi mi sm xm pm dn/40"
+                  
+                />
+                
+              </div>
+         
+          </div>
+
         </div>
-      </form>
-    {% endif %}
-    </center>
-  </div>
-</div> 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-  <script src="{% static 'js/main.js' %}"></script>
-</body>
+          <button class="vd rj ek rc rg gh lk ml il _l gi hi">
+            Soumettre
+          </button>
 
-</html>
+        </form>
+
+    </div>
+  </section>
+<!-- ===== SignIn Form End ===== -->
+
+<script>
+  const avatarInput = document.getElementById('id_avatar');
+  const imagePreview = document.getElementById('image-preview');
+
+  avatarInput.addEventListener('change', function () {
+    const file = this.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.addEventListener('load', function () {
+        imagePreview.src = reader.result;
+      });
+
+      reader.readAsDataURL(file);
+    } else {
+      imagePreview.src = '#';
+    }
+  });
+</script>
+</main>
+{% endblock content %}

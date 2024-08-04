@@ -3,8 +3,7 @@ from django.dispatch import receiver
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
-from .models import User
-from accounts.models import Account, Rechargebook
+from .models import User, Account, Rechargebook
 import qrcode
 from django.core.files.base import ContentFile
 from io import BytesIO
@@ -73,7 +72,7 @@ def create_user_account(sender, instance, created, **kwargs):
         # rechargebook.pdf_file.save(f'{instance.first_name}_livret_de_paiement.pdf', ContentFile(pdf_content), save=True)
 
         # Envoi de notification par e-mail
-        subject = 'Bienvenue sur Dawa Adjala !'
-        message = render_to_string('registration/welcome_email_template.html', {'user': instance})
-        recipient_list = [instance.email]
-        send_mail(subject, message, settings.EMAIL_HOST, recipient_list)
+        # subject = 'Bienvenue sur Dawa Adjala !'
+        # message = render_to_string('registration/welcome_email_template.html', {'user': instance})
+        # recipient_list = [instance.email]
+        # send_mail(subject, message, settings.EMAIL_HOST, recipient_list)

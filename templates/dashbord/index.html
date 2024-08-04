@@ -9,14 +9,13 @@
 
 {% block content %}
 <body
-    x-data="{ page: 'home', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+    x-data="{ page: 'dashbord', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
     x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'b eh': darkMode === true}"
   >
-<div class="flex justify-center h-screen px-6 py-24 mx-auto"> 
-
+<div class="flex justify-center px-6 pt-24 mx-auto"> 
   <div class="flex flex-wrap w-full justify-center -mx-3">
     <div class="max-w-full w-full px-3 lg:w-2/3 lg:flex-none">
       <div class="flex flex-wrap -mx-3">       
@@ -33,9 +32,9 @@
                     <div class="mb-6 -mt-6 lg:mb-0 lg:-mt-16">
                       <a href="javascript:;">
                         {% if request.user.avatar %}
-                        <img class="h-auto max-w-full border-2 border-white border-solid rounded-circle" src="{{ request.user.avatar.url }}" alt="profile image">
+                        <img class="w-34 h-34 border-2 border-white border-solid rounded-circle" src="{{ request.user.avatar.url }}" alt="profile image">
                         {% else %}
-                            <img class="w-10 h-10 rounded-full" src="{% static 'media/avatar/default.jpg' %}" alt="default user photo">
+                            <img class="w-34 h-34 rounded-full" src="{% static 'media/avatar/default.jpg' %}" alt="default user photo">
                         {% endif %}
                       </a>
                     </div>
@@ -44,7 +43,7 @@
                 <div class="flex flex-wrap justify-center">
                   <div class="flex">
                     <div class="mr-6">
-                      <h5 class="pb-2 mt-6 mb-0 text-center text-black">{{user.get_full_name }}</h5>
+                      <h5 class="pb-2 mt-6 mb-0 text-center text-black">Bonjour {{user.get_full_name }} !</h5>
                     </div>
                   </div>
                 </div>
@@ -86,52 +85,137 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    
+  <div class="w-full p-12 mx-auto ">
+    <div class="flex flex-wrap -mx-3">
+      <div class="w-full max-w-full px-3  mt-0 shrink-0 md:w-5/12 md:flex-0">
         <div class="w-full max-w-full px-3 mb-6 lg:mb-0 lg:w-full lg:flex-none animate_top">
-          <div class="relative flex flex-col min-w-0 mt-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-            <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-              <div class="flex items-center justify-between">
-                <h5 class="mb-2 font-awesome dark:text-white">5 dernières recharges</h5>
-                {% comment %} <div class="relative flex items-center justify-between p-1 border rounded-full bg-white ">
-                  <input type="text" placeholder="Rechercher un patient" class="w-full pl-10 pr-4 py-2 border-0 focus:outline-none bg-transparent">
-                  <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <i class="fas fa-search text-green-700"></i>
-                  </div>
-                </div> {% endcomment %}
-
-              </div>
-            </div>
-            <div class="flex-auto p-4">
-              <!-- Table structure -->
-              <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-green-50">
-                  <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Somme réchargée</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Heure</th>
-                  </tr>
-                </thead>
-                  <tbody>
-                    <!-- Table rows -->
-                    {% if recent_recharges %}
-                      {% for recent_recharges in recent_recharges %}
-                        <tr>
-                          <td class="px-6 py-4 whitespace-nowrap">{{ recent_recharges.amount }} FCFA</td>
-                          <td class="px-6 py-4 whitespace-nowrap">{{ recent_recharges.date }}</td>
-                          <td class="px-6 py-4 whitespace-nowrap text-right">{{ recent_recharges.time }}</td>
-                        </tr>
-                      {% endfor %}
-                    {% else %}
-                        <tr>
-                            <td colspan="3" class="px-6 py-4 whitespace-nowrap text-center">Aucune recharge n'a été effectué sur ce compte</td>
-                        </tr>
-                    {% endif %}
-                </tbody>
-              </table>
-            </div>
+          <!-- Graphique de la Progression Mensuelle de l'Épargne -->
+          <div class="max-w-4xl mx-auto p-4 bg-white rounded-lg shadow mb-6">
+            <h2 class="text-2xl text-black mb-4">Progression mensuelle de votre épargne</h2>
+            <canvas id="myChart" class="w-full h-64"></canvas>
           </div>
         </div>
+      </div>
 
+      <div class="w-full max-w-full px-3 mt-0 shrink-0 md:w-6/12 md:flex-0 md:mt-0">
+        <div class="w-full max-w-full px-3 mb-6 lg:mb-0 lg:w-full lg:flex-none animate_top">
+          <div class="p-4 mx-6 mb-0 text-center bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
+            <h2 class="text-2xl text-black mb-4">Répartition de vos dépenses</h2>
+            <canvas id="expenseChart" class="w-full h-64"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
+  <div class="w-full pt-2 pl-16 mx-auto">
+    <a href="{% url 'authentication:make_payment' %}" class="ek jk lk gh gi hi sg ml il vc _d _l text-center">Effectuer un paiement</a>
+    <a href="{% url "authentication:make_transfer" %}" class="ek jk lk mh gi hi sg ml il vc _d _l text-center">Effectuer un transfert</a>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('{% url "authentication:get_monthly_savings" %}')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Data:', data);  // Log les données pour vérification
+
+            // Fonction pour formater les dates
+            function formatDate(isoDate) {
+                const date = new Date(isoDate);
+                const options = { year: 'numeric', month: 'long' };
+                return date.toLocaleDateString('fr-FR', options);
+            }
+
+            // Formater les labels
+            const formattedLabels = data.labels.map(label => formatDate(label));
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: formattedLabels,
+                    datasets: [{
+                        label: 'Épargne',
+                        data: data.data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));  // Log les erreurs de fetch
+    });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          fetch('{% url "authentication:get_expense_distribution" %}')
+          .then(response => response.json())
+          .then(data => {
+              console.log('Expense Distribution Data:', data);  // Log les données pour vérification
+      
+              var ctx = document.getElementById('expenseChart').getContext('2d');
+              var expenseChart = new Chart(ctx, {
+                  type: 'bar', 
+                  data: {
+                      labels: data.labels,
+                      datasets: [{
+                          label: 'Épargne',
+                          data: data.data,
+                          backgroundColor: [
+                              'rgba(75, 192, 192, 0.2)',
+                              'rgba(255, 99, 132, 0.2)'
+                          ],
+                          borderColor: [
+                              'rgba(75, 192, 192, 1)',
+                              'rgba(255, 99, 132, 1)'
+                          ],
+                          borderWidth: 1
+                      },
+                      {
+                        label: 'Paiements vers les Hôpitaux (FCFA)',
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                  },
+                  options: {
+                      responsive: true,
+                      scales: {
+                          y: {
+                              beginAtZero: true
+                          }
+                      },
+                      plugins: {
+                          legend: {
+                              display: true,
+                              position: 'top'
+                          },
+                      }
+                  }
+              });
+          })
+          .catch(error => console.error('Error fetching data:', error));  // Log les erreurs de fetch
+      });
+      </script>
+  
 </body>
 {% endblock content %}

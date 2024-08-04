@@ -1,0 +1,57 @@
+{% extends "dashbord/_dashbord_base.html" %}
+{% load static %}
+{% block title %} Dawa Adjala | Paiement {% endblock %}
+
+{% block overlay %}
+<div class="absolute w-full bg-green-700 dark:hidden min-h-68"></div>
+{% endblock overlay %}
+
+{% block content %}
+<div class="flex justify-center h-screen px-0 py-24 mx-auto">
+    <div class="flex flex-wrap w-full justify-center -mx-3">
+        <div class="max-w-full w-full px-3 lg:w-2/3 lg:flex-none">
+<!-- ===== Payment Form Start ===== -->
+<section class="i pg rm ki xn vq gj qp gr hj rp hr">
+  <div class="animate_top bb af i va sg hh sm vk xm yi _n jp hi ao kp">
+    <!-- Bg Border -->
+    <span class="rc h r s zd/2 od zg gh"></span>
+    <span class="rc h r q zd/2 od xg mh"></span>
+    <img class="mx-auto h-12 w-24 mb-12" src="{% static 'media/logo/logo.svg' %}" alt="Dawa Adjala">
+
+    <div class="rj">
+      <h2 class="ek ck kk wm xb">Effectuer un paiement</h2>
+    </div>
+
+    <form class="sb" action="{% url 'authentication:make_payment' %}" method="POST">
+      {% csrf_token %}
+      {% if messages %}
+      <div>
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      
+      <div class="wb">
+        <label class="rc kk wm vb" for="id_recipient">Destinataire</label>
+        {{ form.recipient }}
+      </div>
+
+      <div class="wb">
+        <label class="rc kk wm vb" for="id_coupon">Coupon</label>
+        {{ form.coupon }}
+      </div>
+
+      <button class="vd rj ek rc rg gh lk ml il _l gi hi">
+        Effectuer le paiement
+      </button>
+    </form>
+  </div>
+</section>
+<!-- ===== Payment Form End ===== -->
+        </div>
+    </div>
+</div>
+{% endblock content %}

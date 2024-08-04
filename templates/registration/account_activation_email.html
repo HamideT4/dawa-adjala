@@ -1,0 +1,16 @@
+{% load static %}
+
+{% autoescape off %}
+Salut {{ user.get_full_name }} !
+
+Veuillez cliquer sur le lien ci-dessous pour activer votre compte :
+{% block reset_link %}
+http://{{ domain }}{% url 'authentication:activate' uidb64=uid token=token %}
+{% endblock %}
+
+Si vous ne vous êtes pas inscrit sur notre site, veuillez ignorer ce message.
+
+Meilleures salutations,
+L'équipe de Dawa Adjala.
+
+{% endautoescape %}

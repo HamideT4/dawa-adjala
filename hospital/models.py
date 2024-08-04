@@ -14,10 +14,15 @@ def generate_hospital_uid():
         uid_base64 = uid_base64.replace('/', '').replace('+', '')
         return 'DADH' + uid_base64[:8].upper()
 
+class HospitalAccount(models.Model):
+    account_unique_identifier = models.CharField(max_length=255, unique=True, default=generate_hospital_uid, editable=False)
+    owner = models.OneToOneField('Hospital', on_delete=models.CASCADE, primary_key=True, related_name='account')
+    balance = models.IntegerField(default=0)
+
 class Hospital(models.Model):
     uid = models.CharField(max_length=255, unique=True, default=generate_hospital_uid, editable=False)
     name = models.CharField(max_length=255)
-    address = models.TextField()
+    address = models.CharField()
     phone_number = models.CharField(max_length=20, blank=True)
     description = models.TextField()
     photo = models.ImageField(upload_to='hospital_photos/')

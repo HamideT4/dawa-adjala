@@ -84,15 +84,15 @@
 
         <div class="vd ro tc sf rn un gg vn">
           <div class="animate_top">
-            <h4 class="kk wm tj ec">Quick Links</h4>
+            <h4 class="kk wm tj ec">Liens rapides</h4>
 
             <ul>
               <li><a href="/" class="sc xl vb">Accueil</a></li>
               <li><a href="{% url 'about' %}" class="sc xl vb">À propos de nous</a></li>
               <li>
-                <a href="#" class="sc xl vb">
+                <a href="/#partners" class="sc xl vb">
                   Nos parténaires 
-                  <span class="sc ek uj lk nh rg zi _i nc">Hiring</span>
+                  {% comment %} <span class="sc ek uj lk nh rg zi _i nc">Hiring</span> {% endcomment %}
                 </a>
               </li>
               <li><a href="{% url 'hospital:hospital_detail' %}" class="sc xl vb">Hôpitaux parténaires</a></li>
@@ -103,10 +103,10 @@
             <h4 class="kk wm tj ec">Services</h4>
 
             <ul>
-              <li><a href="#" class="sc xl vb">Banque de santé</a></li>
-              <li><a href="#" class="sc xl vb">Examens chez soi</a></li>
-              <li><a href="#" class="sc xl vb">Transfert d’argent</a></li>
-              <li><a href="#" class="sc xl vb">Prêt pour soins</a></li>
+              <li><a href="/#services" class="sc xl vb">Banque de santé</a></li>
+              <li><a href="/#services" class="sc xl vb">Examens chez soi</a></li>
+              <li><a href="/#services" class="sc xl vb">Transfert d’argent</a></li>
+              <li><a href="/#services" class="sc xl vb">Prêt pour soins</a></li>
             </ul>
           </div>
 
@@ -114,10 +114,10 @@
             <h4 class="kk wm tj ec">Support</h4>
 
             <ul>
-              <li><a href="#" class="sc xl vb">FAQ</a></li>
-              <li><a href="{% url 'about' %}" class="sc xl vb">Notre histoire</a></li>
-              <li><a href="{% url 'about' %}" class="sc xl vb">Notre équipe</a></li>
-              <li><a href="#" class="sc xl vb">Nos contacts</a></li>
+              <li><a href="/#faq" class="sc xl vb">FAQ</a></li>
+              <li><a href="about#history" class="sc xl vb">Notre histoire</a></li>
+              <li><a href="about#team" class="sc xl vb">Notre équipe</a></li>
+              <li><a href="/#support" class="sc xl vb">Nos contacts</a></li>
             </ul>
           </div>
 
@@ -167,7 +167,7 @@
       </div>
 
       <div class="animate_top">
-        <p>&copy; 2025 Base. All rights reserved</p>
+        <p>&copy; 2025 Dawa Adjala. All rights reserved</p>
       </div>
     </div>
     <!-- Footer Bottom -->

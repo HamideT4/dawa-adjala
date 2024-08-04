@@ -22,20 +22,22 @@
 
     <form class="sb" action="{% url 'authentication:login' %}" method="POST">
       {% csrf_token %}
-        {% if messages %}
-        <ul class="messages">
+      {% if messages %}
+      <div>
           {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }} text-red-600"{% endif %}>{{ message }}</li>
+              <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                  {{ message }}
+              </div>
           {% endfor %}
-        </ul>
-        {% endif %}
+      </div>
+  {% endif %}
       <div class="wb">
         <label class="rc kk wm vb" for="id_username">E-mail</label>
         <input
           type="email"
           name="username"
           id="id_username"
-          placeholder="johndoe@gmail.com"
+          placeholder="Adresse e-mail"
           class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
         />
       </div>
@@ -46,7 +48,7 @@
           type="password"
           name="password"
           id="id_password"
-          placeholder="**************"
+          placeholder="Mot de passe"
           class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
         />
       </div>

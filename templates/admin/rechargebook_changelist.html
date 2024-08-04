@@ -1,0 +1,9 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block object-tools %}
+    <div class="object-tools">
+        {% url 'admin:print_rechargebook' object.id as print_url %}
+        <a href="{{ print_url }}" class="button">Imprimer le livret</a>
+    </div>
+{% endblock %}

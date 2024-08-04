@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from django.contrib.messages import constants as messages
 
 load_dotenv()
 
@@ -29,20 +30,26 @@ SECRET_KEY = str (os.getenv ('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.43.71','127.0.0.1']
 
 SITE_ID = 1
+
+# Development domain, e.g., localhost:8000
+DEVELOPMENT_DOMAIN = 'localhost:8000'
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'authentication:user_dashboad'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'dal',
+    'dal_select2',
     'jazzmin', #customize admin panel
 
     'django.contrib.admin',
@@ -64,7 +71,7 @@ INSTALLED_APPS = [
     # Local apps
 
     'authentication', # Authentication app
-    'accounts',
+    #'accounts',
     'hospital',
     'dawaadjala',
 
@@ -159,9 +166,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-USE_L10N = False
+USE_L10N = True
 
-DATE_INPUT_FORMATS = ['%d/%m/%Y']  
+DATE_INPUT_FORMATS = ["%d/%m/%Y"]  
 
 
 # Static files (CSS, JavaScript, Images)
@@ -206,3 +213,19 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 SITE_NAME = "DawaAdjala"
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # Votre adresse Gmail
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # Votre mot de passe Gmail ou App Password
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'error',
+}

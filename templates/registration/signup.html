@@ -19,12 +19,12 @@
       <h2 class="ek ck kk wm xb">Créer gratuitement votre compte</h2>
     </div>
 
-    <form class="sb" action="{% url 'authentication:signup' %}" method="POST">
+    <form class="sb" action="{% url 'authentication:signup' %}" method="POST" enctype="multipart/form-data" >
       {% csrf_token %}
         {% if messages %}
         <ul class="messages">
           {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }} text-red-600"{% endif %}>{{ message }}</li>
+            <li{% if message.tags %} class="{{ message.tags }} text-red-800"{% endif %}>{{ message }}</li>
           {% endfor %}
         </ul>
         {% endif %}
@@ -110,7 +110,7 @@
             name="birth_date"
             id="id_birth_date" 
             class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
-            value="{{placement.date|date:"d/m/Y" }}"
+            {% comment %} value="{{placement.date|date:"d/m/Y" }}" {% endcomment %}
             placeholder="Selectionner une date">
       </div>
 
@@ -133,7 +133,7 @@
           type="email"
           name="email"
           id="id_username"
-          placeholder="Adresse email"
+          placeholder="Adresse e-mail"
           class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
           
         />
@@ -194,7 +194,7 @@
 
       reader.readAsDataURL(file);
     } else {
-      imagePreview.src = '#';
+      imagePreview.src = 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg';
     }
   });
 </script>

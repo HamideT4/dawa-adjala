@@ -1,0 +1,29 @@
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        margin: 0;
+        padding: 0;
+    }
+
+    .no-print {
+        display: none;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+
+    /* Définir le format paysage avec une taille personnalisée */
+    @page {
+        size: 18cm 12cm landscape; /* Exemple de taille personnalisée */
+        margin: 0;
+    }
+
+    .print-container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px; /* Ajustez le padding si nécessaire */
+        box-sizing: border-box;
+    }
+}

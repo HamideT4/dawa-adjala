@@ -1,0 +1,104 @@
+{% extends "dashbord/_dashbord_base.html" %}
+{% load static %}
+{% block title %} Dawa Adjala | Transfert {% endblock %}
+
+{% block overlay %}
+<div class="absolute w-full bg-green-700 dark:hidden min-h-68"></div>
+{% endblock overlay %}
+
+{% block content %}
+<main>
+  <div class="flex justify-center h-screen px-0 py-24 mx-auto">
+    <div class="flex flex-wrap w-full justify-center -mx-3">
+      <div class="max-w-full w-full px-3 lg:w-2/3 lg:flex-none">
+<!-- ===== Transfer Form Start ===== -->
+          <section class="i pg rm ki xn vq gj qp gr hj rp hr">
+            <div class="animate_top bb af i va sg hh sm vk xm yi _n jp hi ao kp">
+              <!-- Bg Border -->
+              <span class="rc h r s zd/2 od zg gh"></span>
+              <span class="rc h r q zd/2 od xg mh"></span>
+              <img class="mx-auto h-12 w-24 mb-12" src="{% static 'media/logo/logo.svg' %}" alt="Dawa Adjala">
+
+              <div class="rj">
+                <h2 class="ek ck kk wm xb">Effectuer un transfert</h2>
+              </div>
+
+              <form class="sb" action="{% url 'authentication:make_transfer' %}" method="POST">
+                {% csrf_token %}
+                {% if messages %}
+                <div>
+                  {% for message in messages %}
+                  <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                  </div>
+                  {% endfor %}
+                </div>
+                {% endif %}
+                
+                <div class="wb">
+                  <label class="rc kk wm vb" for="id_recipient">Destinataire</label>
+                  {{ form.recipient }}
+                  <ul id="recipient_results" style="display: none;"></ul>
+                  <input type="hidden" id="recipient_id" name="recipient_id">
+                </div>
+
+                <div class="wb">
+                  <label class="rc kk wm vb" for="id_coupon">Coupon</label>
+                  {{ form.coupon }}
+                </div>
+
+                <button class="vd rj ek rc rg gh lk ml il _l gi hi">
+                  Effectuer le transfert
+                </button>
+              </form>
+            </div>
+          </section>
+<!-- ===== Transfer Form End ===== -->
+        </div>
+      </div>
+    </div>
+</main>
+{% endblock content %}
+
+{% block footer %}
+<script>
+$(document).ready(function() {
+    $('#id_recipient').on('input', function() {
+        var query = $(this).val();
+        if (query.length > 1) {
+            $.ajax({
+                url: '{% url "authentication:user-autocomplete" %}',
+                data: {
+                    q: query
+                },
+                success: function(data) {
+                    var results = $('#recipient_results');
+                    results.empty();
+                    for (var i = 0; i < data.results.length; i++) {
+                        var item = data.results[i];
+                        results.append('<li data-id="' + item.id + '"><img src="' + item.image_url + '" style="width: 20px; height: 20px; margin-right: 5px;"> ' + item.text + '</li>');
+                    }
+                    results.show();
+                }
+            });
+        } else {
+            $('#recipient_results').hide();
+        }
+    });
+
+    $(document).on('click', '#recipient_results li', function() {
+        var recipient = $(this).text();
+        var recipient_id = $(this).data('id');
+        $('#id_recipient').val(recipient);
+        $('#recipient_id').val(recipient_id);
+        $('#recipient_results').hide();
+    });
+
+    $(document).click(function(e) {
+        if (!$(e.target).closest('#id_recipient').length) {
+            $('#recipient_results').hide();
+        }
+    });
+});
+</script>
+{% endblock %}
